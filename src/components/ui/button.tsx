@@ -11,15 +11,14 @@ const Slot = React.forwardRef<
   }
 >(({ asChild, children, ...props }, ref) => {
   if (asChild && React.isValidElement(children)) {
-    return React.cloneElement(
-      children,
-      {
-        ...props,
-        ...children.props,
-        ref,
-        className: cn(props.className, children.props.className),
-      } as any
-    )
+    const child = children as React.ReactElement<Record<string, unknown>>
+    const childProps = child.props && typeof child.props === "object" ? child.props : {}
+    return React.cloneElement(child, {
+      ...props,
+      ...childProps,
+      ref,
+      className: cn(props.className, childProps.className),
+    } as React.HTMLAttributes<HTMLElement>)
   }
   return <span ref={ref as React.Ref<HTMLSpanElement>} {...props}>{children}</span>
 })
