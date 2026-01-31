@@ -22,6 +22,7 @@ import {
 } from "lucide-react"
 import type { WorkspaceData } from "./actions"
 import type { Case, Task, Document, Contact, TimelineEvent } from "@/lib/mock-data"
+import { ApiTestCard } from "./api-test-card"
 
 const SPACE = { section: "space-y-8" }
 
@@ -665,6 +666,10 @@ export function WorkspaceClient({ initialData, error }: Props) {
             </Card>
           </section>
         )}
+
+        <section className="mt-12 border-t border-border pt-8" aria-label="Developer tools">
+          <ApiTestCard />
+        </section>
       </main>
     </div>
   )

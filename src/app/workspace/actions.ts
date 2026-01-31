@@ -1,5 +1,8 @@
+"use server"
+
 import { readFile } from "fs/promises"
 import path from "path"
+import { testOpenAIConnection } from "@/lib/openai"
 import type {
   Case,
   Task,
@@ -57,4 +60,11 @@ export async function getWorkspaceData(): Promise<WorkspaceData> {
       comingSoonItemKeys,
     }
   }
+}
+
+/** Test OpenAI connectivity. Returns { ok, text } or { ok: false, error }. */
+export async function testOpenAI(): Promise<
+  { ok: true; text: string } | { ok: false; error: string }
+> {
+  return testOpenAIConnection()
 }
