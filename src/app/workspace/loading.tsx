@@ -1,4 +1,4 @@
-export default function TaskOrchestrationLoading() {
+export default function WorkspaceLoading() {
   return (
     <div className="flex min-h-[60vh] items-center justify-center">
       <div className="flex flex-col items-center gap-4">

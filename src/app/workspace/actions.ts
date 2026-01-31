@@ -10,7 +10,7 @@ import type {
 import { comingSoonItemKeys } from "@/lib/mock-data"
 
 export type WorkspaceData = {
-  matters: Case[]
+  assignments: Case[]
   tasks: Task[]
   documents: Document[]
   contacts: Contact[]
@@ -25,25 +25,31 @@ export async function getWorkspaceData(): Promise<WorkspaceData> {
       process.cwd(),
       "src",
       "data",
-      "task-orchestration.json"
+      "workspace.json"
     )
     const raw = await readFile(filePath, "utf-8")
     const data = JSON.parse(raw) as {
-      matters: Case[]
+      matters?: Case[]
+      assignments?: Case[]
       tasks: Task[]
       documents: Document[]
       contacts: Contact[]
       timeline: TimelineEvent[]
     }
-    console.log("[getWorkspaceData] Loaded", data.matters?.length ?? 0, "matters")
+    const assignmentList = data.assignments ?? data.matters ?? []
+    console.log("[getWorkspaceData] Loaded", assignmentList.length, "assignments")
     return {
-      ...data,
+      assignments: assignmentList,
+      tasks: data.tasks,
+      documents: data.documents,
+      contacts: data.contacts,
+      timeline: data.timeline,
       comingSoonItemKeys,
     }
   } catch (err) {
     console.error("[getWorkspaceData] Error:", err)
     return {
-      matters: [],
+      assignments: [],
       tasks: [],
       documents: [],
       contacts: [],

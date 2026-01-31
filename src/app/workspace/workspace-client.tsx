@@ -26,7 +26,7 @@ import type { Case, Task, Document, Contact, TimelineEvent } from "@/lib/mock-da
 const SPACE = { section: "space-y-8" }
 
 const MAIN_TABS = [
-  { id: "matters" as const, labelKey: "matters" },
+  { id: "assignments" as const, labelKey: "assignments" },
   { id: "tasks" as const, labelKey: "tasks" },
   { id: "coming-soon" as const, labelKey: "comingSoonTab" },
 ]
@@ -84,7 +84,7 @@ function CaseCard({
       )}
       tabIndex={0}
       role="button"
-      aria-label={t("openMatter", {
+      aria-label={t("openAssignment", {
         client: c.client,
         serviceType: c.serviceType,
         taskCount: String(c.taskCount),
@@ -221,14 +221,14 @@ type Props = {
   error?: string | null
 }
 
-export function TaskOrchestrationClient({ initialData, error }: Props) {
+export function WorkspaceClient({ initialData, error }: Props) {
   const { t } = useLocale()
-  const [mainTab, setMainTab] = useState<(typeof MAIN_TABS)[number]["id"]>("matters")
+  const [mainTab, setMainTab] = useState<(typeof MAIN_TABS)[number]["id"]>("assignments")
   const [selectedCase, setSelectedCase] = useState<Case | null>(null)
   const [caseTab, setCaseTab] = useState<(typeof CASE_TABS)[number]["id"]>("overview")
   const [taskFilter, setTaskFilter] = useState<"all" | "byCase">("all")
 
-  const { matters, tasks, documents, contacts, timeline, comingSoonItemKeys } =
+  const { assignments, tasks, documents, contacts, timeline, comingSoonItemKeys } =
     initialData
 
   const tasksByCase = tasks.reduce<Record<string, Task[]>>((acc, task) => {
@@ -260,7 +260,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
       }
       if (nextTab) {
         setMainTab(nextTab.id)
-        if (nextTab.id !== "matters") setSelectedCase(null)
+        if (nextTab.id !== "assignments") setSelectedCase(null)
         requestAnimationFrame(() => {
           document.getElementById(mainTabId(nextTab!.id))?.focus()
         })
@@ -294,10 +294,10 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
       <header className="border-b border-border bg-card shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
           <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            {t("taskOrchestration")}
+            {t("workspace")}
           </h1>
           <p className="mt-1 text-base text-muted-foreground sm:text-lg">
-            {t("taskOrchestrationDesc")}
+            {t("workspaceDesc")}
           </p>
 
           <nav
@@ -319,7 +319,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
                   tabIndex={mainTab === tab.id ? 0 : -1}
                   onClick={() => {
                     setMainTab(tab.id)
-                    if (tab.id !== "matters") setSelectedCase(null)
+                    if (tab.id !== "assignments") setSelectedCase(null)
                   }}
                   className="transition-colors duration-150"
                 >
@@ -336,11 +336,11 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
         className="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-10 lg:px-8"
         role="main"
       >
-        {mainTab === "matters" && (
+        {mainTab === "assignments" && (
           <section
-            id={mainPanelId("matters")}
+            id={mainPanelId("assignments")}
             role="tabpanel"
-            aria-labelledby={mainTabId("matters")}
+            aria-labelledby={mainTabId("assignments")}
             className={SPACE.section}
           >
             {selectedCase ? (
@@ -350,10 +350,10 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
                     variant="ghost"
                     size="sm"
                     onClick={() => setSelectedCase(null)}
-                    aria-label={t("returnToMatters")}
+                    aria-label={t("returnToAssignments")}
                     className="transition-colors duration-150"
                   >
-                    ← {t("allMatters")}
+                    ← {t("allAssignments")}
                   </Button>
                   <ChevronRight className="h-4 w-4" />
                   <span className="font-medium text-foreground">
@@ -364,7 +364,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
                 <div
                   className="flex flex-wrap gap-2 border-b border-border pb-4"
                   role="tablist"
-                  aria-label={t("matterSections")}
+                  aria-label={t("assignmentSections")}
                 >
                   {CASE_TABS.map(({ id, labelKey, icon: Icon }) => (
                     <Button
@@ -529,7 +529,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
               </>
             ) : (
               <div className="grid gap-4 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
-                {matters.map((c) => (
+                {assignments.map((c) => (
                   <CaseCard
                     key={c.id}
                     c={c}
@@ -576,7 +576,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
                 onClick={() => setTaskFilter("byCase")}
                 className="transition-colors duration-150"
               >
-                {t("byMatter")}
+                {t("byAssignment")}
               </Button>
             </div>
 
@@ -614,7 +614,7 @@ export function TaskOrchestrationClient({ initialData, error }: Props) {
                                 >
                                   {caseKey === "unassigned"
                                     ? t("unassigned")
-                                    : matters.find((c) => c.id === caseKey)
+                                    : assignments.find((c) => c.id === caseKey)
                                         ?.client ?? caseKey}
                                 </td>
                               </tr>

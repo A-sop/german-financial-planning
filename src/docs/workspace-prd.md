@@ -8,7 +8,7 @@
 
 ## 1) Product Vision
 
-Build an executive concierge and operational assistant that turns voice instructions, forwarded messages, and documents into structured client matters, obligations, and executed workflows. The system minimizes human oversight while preserving control by routing sensitive actions to a designated human assistant for approval.
+Build an executive concierge and operational assistant that turns voice instructions, forwarded messages, and documents into structured client assignments, obligations, and executed workflows. The system minimizes human oversight while preserving control by routing sensitive actions to a designated human assistant for approval.
 
 The product functions as a **CRM + task manager + document intelligence system** for modern executives and concierge operators.
 
@@ -19,7 +19,7 @@ The product functions as a **CRM + task manager + document intelligence system**
 Enable an executive to delegate operational complexity to a system that:
 
 * captures instructions via **voice, messages, and documents**,
-* maintains a reliable, structured matter database,
+* maintains a reliable, structured assignment database,
 * drafts communications and prepares documents and forms,
 * and uses a **human assistant approval layer** for outbound communication and high-risk updates.
 
@@ -31,13 +31,13 @@ Enable an executive to delegate operational complexity to a system that:
 
 * Owns the account and subscription
 * Issues instructions (voice, forwarded messages, uploads)
-* Oversees matters and final outcomes
+* Oversees assignments and final outcomes
 * Can act on behalf of their own clients
 
 ### 2. Assistant (Human Approver – Included)
 
 * Added by the Executive (name + email)
-* Has access to assigned matters and tasks
+* Has access to assignments and tasks
 * Reviews and approves:
 
   * outbound communications
@@ -67,7 +67,7 @@ Billing and subscription logic **is in scope** but may be minimal at MVP launch.
 * Users (Executive + Assistant)
 * Permissions
 
-### Matter
+### Assignment
 
 * Client (person or business)
 * Service type (relocation, business setup, property purchase, business acquisition, etc.)
@@ -75,7 +75,7 @@ Billing and subscription logic **is in scope** but may be minimal at MVP launch.
 * Linked tasks, documents, messages
 * Approval rules
 
-> **Nomenclature:** A **matter** is a piece of work for a client—whether an individual (relocation, residence permit) or a business (business setup, acquisition). We use "matter" rather than "case" to reflect work with humans and businesses across varied engagements.
+> **Nomenclature:** An **assignment** is a piece of work for a client—whether an individual (relocation, residence permit) or a business (business setup, acquisition). We use "assignment" (EN) / "Auftrag" (DE) to reflect work with humans and businesses across varied engagements.
 
 ### Contact
 
@@ -89,7 +89,7 @@ Billing and subscription logic **is in scope** but may be minimal at MVP launch.
 * Due date
 * Priority
 * Status
-* Linked Matter
+* Linked Assignment
 
 ### Document
 
@@ -150,16 +150,16 @@ Output language matches document language (see §J).
 
 * Automatic human-readable renaming:
 
-  * Case
+  * Assignment
   * Document type
   * Date
   * Identifier
 * Searchable and attachable later
 * Original files preserved
 
-### E) Matter Workspace (CRM)
+### E) Assignment Workspace (CRM)
 
-* Single source of truth per matter:
+* Single source of truth per assignment:
 
   * Contacts
   * Documents
@@ -176,7 +176,7 @@ Output language matches document language (see §J).
   * Voice
   * Messages
   * Documents
-* Global and matter-specific task views
+* Global and assignment-specific task views
 * Waiting-on tracking
 
 ### G) Communications & Letters (Approval Required)
@@ -223,7 +223,7 @@ Drafted content follows the **input language** (see §J) — e.g. German input �
 | Concept        | English    | German     |
 |----------------|------------|------------|
 | Main workspace | Workspace  | Arbeitsbereich |
-| Client matter  | Matter     | Vorgang    |
+| Client matter  | Assignment | Auftrag    |
 | Task list view | Tasks      | Aufgaben   |
 
 * **Required:** English and German UI
@@ -234,10 +234,10 @@ Drafted content follows the **input language** (see §J) — e.g. German input �
 
 #### Language Policy — Input-Driven Output
 
-* **Primary language = input language.** The system’s output language follows the language of the source material.
+* **Primary language = input language.** The system's output language follows the language of the source material.
 * If a document, message, or voice instruction is received in **German**, all related outputs (extractions, drafts, summaries, communications) are produced in **German**.
 * If the input is in **English**, outputs are in **English**.
-* **Tone:** Charming but formal. In German, always use the **Sie form** (formal “you”), not Du.
+* **Tone:** Charming but formal. In German, always use the **Sie form** (formal "you"), not Du.
 
 ---
 
@@ -245,7 +245,7 @@ Drafted content follows the **input language** (see §J) — e.g. German input �
 
 | Action                 | Executive | Assistant         |
 | ---------------------- | --------- | ----------------- |
-| View matters           | Yes       | Assigned only     |
+| View assignments       | Yes       | Assigned only     |
 | Upload documents       | Yes       | Yes               |
 | Edit candidate updates | Yes       | Yes               |
 | Approve updates        | Yes       | Yes               |
@@ -270,7 +270,7 @@ Drafted content follows the **input language** (see §J) — e.g. German input �
 
 ## 9) Success Metrics (Initial)
 
-* Time from input → structured matter/task
+* Time from input → structured assignment/task
 * % of documents with approved extracted fields
 * Reduction in manual task creation
 * Approval turnaround time
@@ -288,7 +288,7 @@ Drafted content follows the **input language** (see §J) — e.g. German input �
 * Expanded messaging ingestion
 * Automated follow-ups
 * Advanced workflow automation
-* Matter templates by service type
+* Assignment templates by service type
 
 UI should clearly mark these as **"Coming Soon"** to set expectations.
 
@@ -300,7 +300,7 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 
 * Users & permissions
 * Intake (email, voice, forwarding)
-* Matters, tasks, documents
+* Assignments, tasks, documents
 * OCR + extraction + approval
 * Drafting + approval-gated sending
 * DIN letter generation
@@ -320,7 +320,7 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 
 * ✅ Extract user stories, acceptance criteria, and list required UI parts (pages, sections, components)
 * ✅ Install shadcn/ui components (Button, Card, Badge; tables/structures built with native HTML)
-* ✅ Create page and components at `/task-orchestration`; compose layout
+* ✅ Create page and components at `/workspace`; compose layout
 * ✅ Create realistic mock data and placeholder content; wire into UI
 * ✅ Ensure each user story is visually supported and acceptance criteria represented
 * ✅ Keep interactions non-destructive (placeholders, no real logic)
@@ -332,9 +332,9 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 
 ### Stage 2 — Backend & Data
 
-* ✅ Connect to data layer (JSON file at `src/data/task-orchestration.json`)
+* ✅ Connect to data layer (JSON file at `src/data/workspace.json`)
 * ✅ Replace mock data with real data from Server Action `getWorkspaceData`
-* ⬜ Implement CRUD operations for matters, tasks, documents (read-only for now)
+* ⬜ Implement CRUD operations for assignments, tasks, documents (read-only for now)
 
 ### Stage 3 — Full Functionality (Not started)
 
@@ -344,4 +344,4 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 
 ---
 
-**Stage 1 summary:** UI built at `/task-orchestration` using shadcn/ui components (Button, Card, Badge). Mock data lives in `src/lib/mock-data.ts`. Includes Matters list, Matter workspace (Overview, Contacts, Documents, Tasks, Timeline), Tasks view with global/by-matter filter, and Coming Soon section. i18n: English and German with language toggle (top-right); translations in `src/lib/i18n/translations.ts`.
+**Stage 1 summary:** UI built at `/workspace` using shadcn/ui components (Button, Card, Badge). Mock data lives in `src/lib/mock-data.ts`. Includes Assignments list, Assignment workspace (Overview, Contacts, Documents, Tasks, Timeline), Tasks view with global/by-assignment filter, and Coming Soon section. i18n: English and German with language toggle (top-right); translations in `src/lib/i18n/translations.ts`.

@@ -1,5 +1,5 @@
 {
-  "matters": [
+  "assignments": [
     {"id":"case-1","client":"Maria Schmidt","serviceType":"Relocation","status":"active","taskCount":4,"documentCount":6,"lastActivity":"2 hours ago"},
     {"id":"case-2","client":"Kai Weber GmbH","serviceType":"Business Setup","status":"active","taskCount":2,"documentCount":3,"lastActivity":"1 day ago"},
     {"id":"case-3","client":"Elena Petrov","serviceType":"Residence Permit","status":"pending","taskCount":1,"documentCount":2,"lastActivity":"3 days ago"}

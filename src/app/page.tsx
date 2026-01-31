@@ -36,7 +36,7 @@ export default function Home() {
             {t("heroSubtitle")}
           </p>
 
-          <Link href="/task-orchestration">
+          <Link href="/workspace">
             <Button size="lg" className="mt-4">
               {t("openWorkspace")}
             </Button>

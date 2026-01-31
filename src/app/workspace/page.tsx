@@ -1,17 +1,17 @@
 import { getWorkspaceData } from "./actions"
-import { TaskOrchestrationClient } from "./task-orchestration-client"
+import { WorkspaceClient } from "./workspace-client"
 import { comingSoonItemKeys } from "@/lib/mock-data"
 
-export default async function TaskOrchestrationPage() {
+export default async function WorkspacePage() {
   let data
   let error: string | null = null
   try {
     data = await getWorkspaceData()
   } catch (err) {
-    console.error("[TaskOrchestrationPage] Failed to load data:", err)
+    console.error("[WorkspacePage] Failed to load data:", err)
     error = err instanceof Error ? err.message : "Failed to load workspace data"
     data = {
-      matters: [],
+      assignments: [],
       tasks: [],
       documents: [],
       contacts: [],
@@ -20,5 +20,5 @@ export default async function TaskOrchestrationPage() {
     }
   }
 
-  return <TaskOrchestrationClient initialData={data} error={error} />
+  return <WorkspaceClient initialData={data} error={error} />
 }
