@@ -334,6 +334,7 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 
 * ✅ Connect to data layer (JSON file at `src/data/workspace.json`)
 * ✅ Replace mock data with real data from Server Action `getWorkspaceData`
+* ✅ Wire UI to Server Actions; loading and error states
 * ⬜ Implement CRUD operations for assignments, tasks, documents (read-only for now)
 
 ### Stage 3 — Full Functionality (Not started)
@@ -345,3 +346,5 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 ---
 
 **Stage 1 summary:** UI built at `/workspace` using shadcn/ui components (Button, Card, Badge). Mock data lives in `src/lib/mock-data.ts`. Includes Assignments list, Assignment workspace (Overview, Contacts, Documents, Tasks, Timeline), Tasks view with global/by-assignment filter, and Coming Soon section. i18n: English and German with language toggle (top-right); translations in `src/lib/i18n/translations.ts`.
+
+**Stage 2 summary:** Route `/workspace` loads data via Server Action `getWorkspaceData()` (no params). Response shape: `{ assignments, tasks, documents, contacts, timeline, comingSoonItemKeys }`. Data source: `src/data/workspace.json`. Additional action `testOpenAI()` for API connectivity check (returns `{ ok, text }` or `{ ok: false, error }`). Loading: `loading.tsx`; errors: passed to client and rendered. Constraint: read-only; no CRUD yet.
