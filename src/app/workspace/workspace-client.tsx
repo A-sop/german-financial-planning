@@ -1,15 +1,20 @@
 'use client';
 
 import { useState, Fragment, useCallback, type KeyboardEvent } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+import { Input } from '@/components/ui/input';
 import { useLocale } from '@/components/providers/locale-provider';
 import { cn } from '@/lib/utils';
-import { FolderOpen, ListTodo, FileText, Users, Clock, ChevronRight } from 'lucide-react';
+import { FolderOpen, ListTodo, FileText, Users, Clock, ChevronRight, ChevronUp, ChevronDown } from 'lucide-react';
 import type { WorkspaceData } from './actions';
 import type { Case, Task, Document, Contact, TimelineEvent } from '@/lib/mock-data';
+import type { PlannedFeature, UserSuggestion, FeaturesData } from './feature-actions';
+import { voteFeature, submitFeatureSuggestion } from './feature-actions';
 import { ApiTestCard } from './api-test-card';
+import { SupabaseTestCard } from './supabase-test-card';
 
 const SPACE = { section: 'space-y-8' };
 
@@ -192,17 +197,101 @@ function TimelineItem({ e }: { e: TimelineEvent }) {
 
 type Props = {
   initialData: WorkspaceData;
+  initialFeatures: FeaturesData;
   error?: string | null;
 };
 
-export function WorkspaceClient({ initialData, error }: Props) {
+function FeatureVoteRow({
+  id,
+  label,
+  votes,
+  onVote,
+  disabled,
+}: {
+  id: string;
+  label: string;
+  votes: number;
+  onVote: (id: string, delta: 1 | -1) => void;
+  disabled: boolean;
+}) {
+  return (
+    <div
+      className={cn(
+        'flex items-center gap-3 rounded-lg border border-border p-4',
+        'bg-muted/30 transition-colors duration-150 hover:bg-muted/50'
+      )}
+    >
+      <div className="flex shrink-0 flex-col gap-0.5">
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7"
+          onClick={() => onVote(id, 1)}
+          disabled={disabled}
+          aria-label="Vote up"
+        >
+          <ChevronUp className="h-4 w-4" />
+        </Button>
+        <span className="text-center text-sm font-medium tabular-nums">{votes}</span>
+        <Button
+          variant="ghost"
+          size="icon"
+          className="h-7 w-7"
+          onClick={() => onVote(id, -1)}
+          disabled={disabled}
+          aria-label="Vote down"
+        >
+          <ChevronDown className="h-4 w-4" />
+        </Button>
+      </div>
+      <span className="font-medium">{label}</span>
+    </div>
+  );
+}
+
+export function WorkspaceClient({ initialData, initialFeatures, error }: Props) {
+  const router = useRouter();
   const { t } = useLocale();
   const [mainTab, setMainTab] = useState<(typeof MAIN_TABS)[number]['id']>('assignments');
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
   const [caseTab, setCaseTab] = useState<(typeof CASE_TABS)[number]['id']>('overview');
   const [taskFilter, setTaskFilter] = useState<'all' | 'byCase'>('all');
+  const [suggestionText, setSuggestionText] = useState('');
+  const [suggestionStatus, setSuggestionStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [suggestionError, setSuggestionError] = useState<string | null>(null);
+  const [votingId, setVotingId] = useState<string | null>(null);
 
-  const { assignments, tasks, documents, contacts, timeline, comingSoonItemKeys } = initialData;
+  const { assignments, tasks, documents, contacts, timeline } = initialData;
+  const { plannedFeatures, userSuggestions } = initialFeatures;
+
+  const handleVote = useCallback(
+    async (featureId: string, delta: 1 | -1) => {
+      setVotingId(featureId);
+      const result = await voteFeature(featureId, delta);
+      setVotingId(null);
+      if (result.success) router.refresh();
+    },
+    [router]
+  );
+
+  const handleSubmitSuggestion = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!suggestionText.trim()) return;
+    setSuggestionStatus('loading');
+    setSuggestionError(null);
+    const result = await submitFeatureSuggestion(suggestionText);
+    if (result.success) {
+      setSuggestionText('');
+      setSuggestionStatus('idle');
+      router.refresh();
+    } else {
+      setSuggestionError(result.error);
+      setSuggestionStatus('error');
+    }
+  }, [suggestionText, router]);
+
+  const bySection = (section: PlannedFeature['section']) =>
+    plannedFeatures.filter((f) => f.section === section);
 
   const tasksByCase = tasks.reduce<Record<string, Task[]>>((acc, task) => {
     const key = task.caseId ?? 'unassigned';
@@ -645,29 +734,114 @@ export function WorkspaceClient({ initialData, error }: Props) {
                 <CardTitle>{t('comingSoonTitle')}</CardTitle>
                 <CardDescription>{t('comingSoonDesc')}</CardDescription>
               </CardHeader>
-              <CardContent>
-                <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
-                  {comingSoonItemKeys.map((key) => (
-                    <div
-                      key={key}
-                      className={cn(
-                        'flex items-center gap-3 rounded-lg border border-border p-4',
-                        'bg-muted/30 transition-colors duration-150',
-                        'hover:bg-muted/50'
-                      )}
-                    >
-                      <Badge variant="secondary">{t('comingSoon')}</Badge>
-                      <span className="font-medium">{t(key)}</span>
+              <CardContent className="space-y-8">
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-muted-foreground">
+                    {t('featureSectionMustHave')}
+                  </h3>
+                  <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                    {bySection('must-have').map((f) => (
+                      <FeatureVoteRow
+                        key={f.id}
+                        id={f.id}
+                        label={t(f.labelKey)}
+                        votes={f.votes}
+                        onVote={handleVote}
+                        disabled={votingId === f.id}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-muted-foreground">
+                    {t('featureSectionBugsIdeas')}
+                  </h3>
+                  <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                    {bySection('bugs-ideas').map((f) => (
+                      <FeatureVoteRow
+                        key={f.id}
+                        id={f.id}
+                        label={t(f.labelKey)}
+                        votes={f.votes}
+                        onVote={handleVote}
+                        disabled={votingId === f.id}
+                      />
+                    ))}
+                  </div>
+                </div>
+                <div>
+                  <h3 className="mb-2 text-sm font-semibold text-muted-foreground">
+                    {t('featureSectionFun')}
+                  </h3>
+                  <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                    {bySection('fun').map((f) => (
+                      <FeatureVoteRow
+                        key={f.id}
+                        id={f.id}
+                        label={t(f.labelKey)}
+                        votes={f.votes}
+                        onVote={handleVote}
+                        disabled={votingId === f.id}
+                      />
+                    ))}
+                  </div>
+                </div>
+                {userSuggestions.length > 0 && (
+                  <div>
+                    <h3 className="mb-2 text-sm font-semibold text-muted-foreground">
+                      {t('featureUserSuggestion')}
+                    </h3>
+                    <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+                      {userSuggestions.map((s) => (
+                        <FeatureVoteRow
+                          key={s.id}
+                          id={s.id}
+                          label={s.text}
+                          votes={s.votes}
+                          onVote={handleVote}
+                          disabled={votingId === s.id}
+                        />
+                      ))}
                     </div>
-                  ))}
+                  </div>
+                )}
+                <div className="border-t border-border pt-6">
+                  <form onSubmit={handleSubmitSuggestion} className="flex flex-col gap-3">
+                    <label htmlFor="feature-suggestion" className="text-sm font-medium">
+                      {t('featureSuggestLabel')}
+                    </label>
+                    <div className="flex gap-2">
+                      <Input
+                        id="feature-suggestion"
+                        value={suggestionText}
+                        onChange={(e) => {
+                          setSuggestionText(e.target.value);
+                          setSuggestionStatus('idle');
+                          setSuggestionError(null);
+                        }}
+                        placeholder={t('featureSuggestPlaceholder')}
+                        maxLength={500}
+                        disabled={suggestionStatus === 'loading'}
+                        className="flex-1"
+                      />
+                      <Button type="submit" disabled={suggestionStatus === 'loading' || !suggestionText.trim()}>
+                        {suggestionStatus === 'loading' ? t('submitting') : t('featureSuggestSubmit')}
+                      </Button>
+                    </div>
+                    {suggestionError && (
+                      <p className="text-sm text-destructive">{suggestionError}</p>
+                    )}
+                  </form>
                 </div>
               </CardContent>
             </Card>
           </section>
         )}
 
-        <section className="mt-12 border-t border-border pt-8" aria-label="Developer tools">
+        <section className="mt-12 space-y-4 border-t border-border pt-8" aria-label={t('developerTools')}>
+          <h2 className="text-lg font-semibold">{t('developerTools')}</h2>
           <ApiTestCard />
+          <SupabaseTestCard />
         </section>
       </main>
     </div>

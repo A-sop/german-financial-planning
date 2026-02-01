@@ -49,8 +49,18 @@ const apiKey = process.env.OPENAI_API_KEY;
 - **Outputs:** No `dangerouslySetInnerHTML`; user content rendered as text (React escapes)
 - **Errors:** Validation failures return i18n keys; unexpected errors logged server-side only, generic message to user
 
-## Planned (not yet wired)
+## Current integrations (continued)
 
+### Supabase
+
+- **Used for:** Document Intake persistence (uploads, task_suggestions). Pre-login session storage.
+- **Env keys:** `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+- **Where used:** `src/lib/supabase-server.ts` (server-only), `src/app/workspace/supabase-actions.ts`
+- **Test:** Workspace → Developer tools → "Test Supabase"
+
+---
+
+## Planned (not yet wired)
 - n8n (workflows)
 - WhatsApp (Twilio)
 - Slack
