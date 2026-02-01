@@ -54,9 +54,12 @@ const apiKey = process.env.OPENAI_API_KEY;
 ### Supabase
 
 - **Used for:** Document Intake persistence (uploads, task_suggestions). Pre-login session storage.
-- **Env keys:** `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY`
+- **Env keys:** `SUPABASE_URL`, `SUPABASE_SERVICE_ROLE_KEY` (use `service_role` JWT or `sb_secret_...` format)
 - **Where used:** `src/lib/supabase-server.ts` (server-only), `src/app/workspace/supabase-actions.ts`
-- **Test:** Workspace → Developer tools → "Test Supabase"
+- **Test:** Workspace → Developer tools → Dev test page → "Test Supabase"
+- **Setup guide:** [supabase-setup.md](./supabase-setup.md)
+
+> **Remember:** This app uses **server-only** Supabase access. We do NOT use `NEXT_PUBLIC_SUPABASE_*` — the browser never talks to Supabase directly. Use `SUPABASE_URL` and `SUPABASE_SERVICE_ROLE_KEY` only. Add `NEXT_PUBLIC_SUPABASE_URL` and `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` only when adding client-side Supabase (e.g. Auth).
 
 ---
 
@@ -74,6 +77,7 @@ const apiKey = process.env.OPENAI_API_KEY;
 .env.example              — Template: which env vars exist (no secrets)
 .env.local                — Your actual keys (never commit; create from .env.example)
 src/docs/INTEGRATIONS.md  — This file: setup guide and integration list
+src/docs/supabase-setup.md — Supabase project creation, keys, and verification
 src/lib/openai.ts         — OpenAI client (server-only)
 src/app/workspace/actions.ts — testOpenAI() server action
 src/app/workspace/api-test-card.tsx — UI to trigger API test (Workspace page, bottom)
