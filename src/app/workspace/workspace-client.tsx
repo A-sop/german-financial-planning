@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, Fragment, useCallback } from 'react';
+import { useState, Fragment, useCallback, type KeyboardEvent } from 'react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -44,13 +44,13 @@ function CaseCard({
 }: {
   c: Case;
   onSelect: () => void;
-  t: (key: string, params?: Record<string, string>) => string;
+  t: (_key: string, _params?: Record<string, string>) => string;
   tasksLabel: string;
   documentsLabel: string;
   lastActivityLabel: string;
 }) {
   const handleKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: KeyboardEvent) => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         onSelect();
@@ -215,7 +215,7 @@ export function WorkspaceClient({ initialData, error }: Props) {
   const mainPanelId = (tab: string) => `main-panel-${tab.toLowerCase().replace(' ', '-')}`;
 
   const handleMainTabKeyDown = useCallback(
-    (e: React.KeyboardEvent) => {
+    (e: KeyboardEvent) => {
       const idx = MAIN_TABS.findIndex((tab) => tab.id === mainTab);
       let nextTab: (typeof MAIN_TABS)[number] | null = null;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {

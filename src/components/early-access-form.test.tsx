@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import { describe, it, expect, vi, beforeEach } from 'vitest';
 import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
@@ -7,7 +8,7 @@ import { submitEarlyAccess } from '@/app/actions/early-access';
 
 vi.mock('@/app/actions/early-access');
 
-function renderWithLocale(ui: React.ReactElement) {
+function renderWithLocale(ui: ReactElement) {
   return render(<LocaleProvider>{ui}</LocaleProvider>);
 }
 
