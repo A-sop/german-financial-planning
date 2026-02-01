@@ -122,6 +122,9 @@ export const translations = {
     tasksCount: 'tasks',
     documentsCount: 'documents',
     developerTools: 'Developer Tools',
+    devTestPage: 'Dev test page',
+    devTestPageDesc: 'Design system components and API/Supabase integration tests.',
+    devTestPageLink: 'Open dev test page',
     addTask: 'Add task',
     addTaskDescription: 'Create a new task like “Submit residence permit application”.',
     addTaskPlaceholder: 'e.g. Submit residence permit application',
@@ -249,6 +252,9 @@ export const translations = {
     tasksCount: 'Aufgaben',
     documentsCount: 'Dokumente',
     developerTools: 'Entwickler-Tools',
+    devTestPage: 'Entwickler-Testseite',
+    devTestPageDesc: 'Design-System-Komponenten und API-/Supabase-Integrationstests.',
+    devTestPageLink: 'Testseite öffnen',
     addTask: 'Aufgabe hinzufügen',
     addTaskDescription: 'Neue Aufgabe anlegen, z. B. „Antrag auf Aufenthaltserlaubnis einreichen“.',
     addTaskPlaceholder: 'z. B. Antrag auf Aufenthaltserlaubnis einreichen',
@@ -261,6 +267,7 @@ export const translations = {
     priorityMedium: 'Mittel',
     priorityHigh: 'Hoch',
     priorityUrgent: 'Dringend',
+    sops: 'Arbeitsanweisungen',
   },
 } as const satisfies Record<Locale, Record<string, string | Record<string, string>>>;
 

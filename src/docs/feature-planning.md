@@ -43,6 +43,9 @@
 ## Todos
 
 - [ ] **Feature voting in production** — Votes and user suggestions currently persist to `features.json`; Vercel’s filesystem is read-only, so they only work locally. Add a database (or external store) when available so voting/submissions work in production.
+- [ ] **SOP PDF export** — Allow users to generate PDFs of individual SOPs or the full SOP set for printing or sharing.
+- [ ] **SOP wiki page** — A wiki-style reference view for SOPs (browseable, linkable, searchable) for later reference.
+- [ ] **SOP voice add/edit** — Super admin can add and edit SOPs by voice (speech-to-text).
 
 ---
 

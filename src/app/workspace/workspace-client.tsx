@@ -2,6 +2,7 @@
 
 import { useState, Fragment, useCallback, type KeyboardEvent, type FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -31,9 +32,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
-import { ApiTestCard } from './api-test-card';
-import { SupabaseTestCard } from './supabase-test-card';
-
 const SPACE = { section: 'space-y-8' };
 
 const MAIN_TABS = [
@@ -413,10 +411,17 @@ export function WorkspaceClient({ initialData, initialFeatures, error }: Props) 
 
       <header className="border-b border-border bg-card shadow-sm">
         <div className="mx-auto max-w-6xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-            {t('workspace')}
-          </h1>
-          <p className="mt-1 text-base text-muted-foreground sm:text-lg">{t('workspaceDesc')}</p>
+          <div className="flex items-start justify-between gap-4">
+            <div>
+              <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
+                {t('workspace')}
+              </h1>
+              <p className="mt-1 text-base text-muted-foreground sm:text-lg">{t('workspaceDesc')}</p>
+            </div>
+            <Button variant="outline" size="sm" asChild>
+              <Link href="/sops">{t('sops')}</Link>
+            </Button>
+          </div>
 
           <nav
             className="mt-6"
@@ -1013,10 +1018,18 @@ export function WorkspaceClient({ initialData, initialFeatures, error }: Props) 
           </section>
         )}
 
-        <section className="mt-12 space-y-4 border-t border-border pt-8" aria-label={t('developerTools')}>
-          <h2 className="text-lg font-semibold">{t('developerTools')}</h2>
-          <ApiTestCard />
-          <SupabaseTestCard />
+        <section className="mt-12 border-t border-border pt-8" aria-label={t('developerTools')}>
+          <Card className="border-dashed border-muted-foreground/30">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">{t('developerTools')}</CardTitle>
+              <CardDescription>{t('devTestPageDesc')}</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <Button variant="outline" size="sm" asChild>
+                <Link href="/dev-test">{t('devTestPageLink')}</Link>
+              </Button>
+            </CardContent>
+          </Card>
         </section>
       </main>
     </div>
