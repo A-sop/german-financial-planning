@@ -55,3 +55,24 @@ npm run test
 
 - **Early Access:** `disabled={isPending}` prevents double submit; uncontrolled email input (no re-renders on keystroke)
 - **OpenAI Test:** `disabled={status === "loading"}` prevents double-click; single request per click
+
+---
+
+## Live site checklist (Vercel / production)
+
+### Desktop
+
+- [ ] Home `/` loads; hero and early access form visible
+- [ ] Language toggle (EN ↔ DE) works; strings update
+- [ ] Early Access: valid email → success; invalid → error; loading state visible
+- [ ] "Open Workspace" link navigates to `/workspace`
+- [ ] `/workspace` loads assignments; tabs (Assignments, Tasks, Coming Soon) work
+- [ ] Select an assignment; overview/contacts/documents/tasks/timeline tabs
+- [ ] ApiTestCard: "Test API connection" → loading → success/error
+- [ ] No console errors; fonts render (system fallback)
+
+### Mobile
+
+- [ ] Layout responsive; no horizontal scroll
+- [ ] Language toggle and form usable (touch targets adequate)
+- [ ] Tabs and navigation work; content readable

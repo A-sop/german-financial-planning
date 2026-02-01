@@ -344,6 +344,14 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 - ✅ Error handling — friendly validation messages; server-side logging only
 - ✅ Update UX — inline form errors, disable submit when invalid
 
+### Level 2 — Debugging Flow & Deployment
+
+- ✅ Prettier + ESLint integration; format-on-save; eslint-config-prettier
+- ✅ ESLint fixes (no-undef, no-unused-vars); argsIgnorePattern for callbacks
+- ✅ Production build succeeds; system fonts (no Google Fonts fetch at build)
+- ✅ Deployment verification; live-site test checklist
+- ✅ Documentation updated
+
 ### Stage 4 — Full Functionality (Not started)
 
 - Approval flows and workflow logic
@@ -357,3 +365,5 @@ UI should clearly mark these as **"Coming Soon"** to set expectations.
 **Stage 2 summary:** Route `/workspace` loads data via Server Action `getWorkspaceData()` (no params). Response shape: `{ assignments, tasks, documents, contacts, timeline, comingSoonItemKeys }`. Data source: `src/data/workspace.json`. Additional action `testOpenAI()` for API connectivity check (returns `{ ok, text }` or `{ ok: false, error }`). Loading: `loading.tsx`; errors: passed to client and rendered. Constraint: read-only; no CRUD yet.
 
 **Stage 3 summary:** Zero Trust applied to early access form: Zod schemas at `src/lib/schemas/early-access.ts` validate email (trim, max 254, format) and locale on client and server. User content rendered as text (React escapes); no `dangerouslySetInnerHTML`. Inline errors and submit disabled when invalid.
+
+**Level 2 summary:** Prettier + ESLint wired; format-on-save via `.vscode/settings.json`; ESLint flat config with `next/core-web-vitals` + `prettier`. Production build uses system fonts to avoid Google Fonts fetch. tsconfig excludes `.next` for type-check stability.
