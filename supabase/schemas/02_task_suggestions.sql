@@ -14,3 +14,5 @@ create table "public"."task_suggestions" (
 
 create index "idx_task_suggestions_session_id" on "public"."task_suggestions" ("session_id");
 create index "idx_task_suggestions_upload_id" on "public"."task_suggestions" ("upload_id");
+
+alter table "public"."task_suggestions" enable row level security;

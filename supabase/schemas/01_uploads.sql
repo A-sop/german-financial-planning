@@ -13,3 +13,5 @@ create table "public"."uploads" (
 );
 
 create index "idx_uploads_session_id" on "public"."uploads" ("session_id");
+
+alter table "public"."uploads" enable row level security;
