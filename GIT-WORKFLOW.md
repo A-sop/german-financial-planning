@@ -4,7 +4,44 @@
 
 ---
 
-## Simple workflow (do this every time)
+## PR-based workflow (recommended)
+
+Ship changes using a simple, repeatable workflow:
+
+1. **Branch from main** — Create a feature branch; main stays deployable.
+2. **Make small Conventional Commits** — Cursor crafts messages by copying recent style (`feat(scope): summary`, `fix:`, `docs:`, etc.).
+3. **Open a PR** — Use Vercel Preview to review before merging.
+4. **Squash-merge and sync main** — One clean commit on main; delete the branch.
+
+Protect `main` so it only changes through PRs. This is enough to collaborate effectively on GitHub with Next.js + Vercel.
+
+**References**
+
+- [GitHub Flow](https://docs.github.com/en/get-started/quickstart/github-flow)
+- [Conventional Commits](https://www.conventionalcommits.org/)
+- [Vercel Preview Deployments](https://vercel.com/docs/deployments/preview-deployments)
+- [GitHub Protected Branches](https://docs.github.com/en/repositories/configuring-branches-and-merges-in-your-repository/managing-protected-branches)
+
+---
+
+## Linear (optional)
+
+When working on a Linear issue, include the issue ID in your commit message. Linear connects to GitHub and will link the commit and update the issue.
+
+**Format:** Mention the ID anywhere in the message.
+
+```
+feat: add signup page A-7
+fix: correct redirect after login. Fixes A-7
+```
+
+**Issue IDs** (e.g. A-5, A-7) are shown in Linear at the top of each issue. See [project-links](src/docs/project-links.md) for your Linear workspace.
+
+---
+
+## Simple workflow (direct to main)
+
+For quick fixes when you skip PRs. Prefer the PR workflow above for features.
 
 **1. Make sure you're on main**
 
