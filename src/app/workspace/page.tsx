@@ -1,5 +1,6 @@
 import { getWorkspaceData } from './actions';
 import { getFeaturesData, type FeaturesData } from './feature-actions';
+import { getSupabaseTasks } from './supabase-task-actions';
 import { WorkspaceClient } from './workspace-client';
 import { comingSoonItemKeys } from '@/lib/mock-data';
 
@@ -28,5 +29,17 @@ export default async function WorkspacePage() {
     // Non-fatal
   }
 
-  return <WorkspaceClient initialData={data} initialFeatures={features} error={error} />;
+  const supabaseTasksResult = await getSupabaseTasks();
+  const supabaseTasks = supabaseTasksResult.ok ? supabaseTasksResult.tasks : [];
+  const supabaseTasksError = supabaseTasksResult.ok ? null : supabaseTasksResult.error;
+
+  return (
+    <WorkspaceClient
+      initialData={data}
+      initialFeatures={features}
+      error={error}
+      supabaseTasks={supabaseTasks}
+      supabaseTasksError={supabaseTasksError}
+    />
+  );
 }

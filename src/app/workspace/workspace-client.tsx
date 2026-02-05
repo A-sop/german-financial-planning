@@ -12,6 +12,8 @@ import { cn } from '@/lib/utils';
 import { FolderOpen, ListTodo, FileText, Users, Clock, ChevronRight, ChevronUp, ChevronDown, Plus } from 'lucide-react';
 import type { WorkspaceData } from './actions';
 import { addTask } from './actions';
+import { addSupabaseTask } from './supabase-task-actions';
+import type { SupabaseTask } from './supabase-task-actions';
 import type { Case, Task, Document, Contact, TimelineEvent } from '@/lib/mock-data';
 import type { TaskStatus, TaskPriority } from '@/lib/mock-data';
 import type { PlannedFeature, FeaturesData } from './feature-actions';
@@ -215,6 +217,8 @@ type Props = {
   initialData: WorkspaceData;
   initialFeatures: FeaturesData;
   error?: string | null;
+  supabaseTasks: SupabaseTask[];
+  supabaseTasksError: string | null;
 };
 
 function FeatureVoteRow({
@@ -265,7 +269,13 @@ function FeatureVoteRow({
   );
 }
 
-export function WorkspaceClient({ initialData, initialFeatures, error }: Props) {
+export function WorkspaceClient({
+  initialData,
+  initialFeatures,
+  error,
+  supabaseTasks,
+  supabaseTasksError,
+}: Props) {
   const router = useRouter();
   const { t } = useLocale();
   const [mainTab, setMainTab] = useState<(typeof MAIN_TABS)[number]['id']>('assignments');
@@ -276,6 +286,11 @@ export function WorkspaceClient({ initialData, initialFeatures, error }: Props) 
   const [suggestionStatus, setSuggestionStatus] = useState<'idle' | 'loading' | 'error'>('idle');
   const [suggestionError, setSuggestionError] = useState<string | null>(null);
   const [votingId, setVotingId] = useState<string | null>(null);
+  const [supabaseTaskName, setSupabaseTaskName] = useState('');
+  const [addSupabaseTaskStatus, setAddSupabaseTaskStatus] = useState<
+    'idle' | 'loading' | 'error'
+  >('idle');
+  const [addSupabaseTaskError, setAddSupabaseTaskError] = useState<string | null>(null);
 
   const { assignments, tasks, documents, contacts, timeline } = initialData;
   const { plannedFeatures, userSuggestions } = initialFeatures;
@@ -344,6 +359,26 @@ export function WorkspaceClient({ initialData, initialFeatures, error }: Props) 
       }
     },
     [newTaskTitle, newTaskCaseId, newTaskStatus, newTaskPriority, newTaskDueDate, newTaskOwner, router]
+  );
+
+  const handleAddSupabaseTask = useCallback(
+    async (e: FormEvent) => {
+      e.preventDefault();
+      const name = supabaseTaskName.trim();
+      if (!name) return;
+      setAddSupabaseTaskStatus('loading');
+      setAddSupabaseTaskError(null);
+      const result = await addSupabaseTask(name);
+      if (result.ok) {
+        setSupabaseTaskName('');
+        setAddSupabaseTaskStatus('idle');
+        router.refresh();
+      } else {
+        setAddSupabaseTaskError(result.error);
+        setAddSupabaseTaskStatus('error');
+      }
+    },
+    [supabaseTaskName, router]
   );
 
   const bySection = (section: PlannedFeature['section']) =>
@@ -1019,7 +1054,70 @@ export function WorkspaceClient({ initialData, initialFeatures, error }: Props) 
           </section>
         )}
 
-        <section className="mt-12 border-t border-border pt-8" aria-label={t('developerTools')}>
+        <section
+          className="mt-12 border-t border-border pt-8"
+          aria-label="My tasks (Supabase RLS)"
+        >
+          <Card className="rounded-xl">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-base">My tasks (Supabase RLS)</CardTitle>
+              <CardDescription>
+                Tasks stored in Supabase with Row Level Security — only your tasks are visible.
+                Requires Clerk + Supabase integration and migration applied.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {supabaseTasksError && (
+                <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                  {supabaseTasksError}
+                </p>
+              )}
+              <form onSubmit={handleAddSupabaseTask} className="flex gap-2">
+                <Input
+                  type="text"
+                  value={supabaseTaskName}
+                  onChange={(e) => {
+                    setSupabaseTaskName(e.target.value);
+                    setAddSupabaseTaskError(null);
+                  }}
+                  placeholder="New task name"
+                  disabled={addSupabaseTaskStatus === 'loading'}
+                  className="max-w-xs"
+                  aria-label="Task name"
+                />
+                <Button
+                  type="submit"
+                  disabled={!supabaseTaskName.trim() || addSupabaseTaskStatus === 'loading'}
+                >
+                  {addSupabaseTaskStatus === 'loading' ? '…' : 'Add'}
+                </Button>
+              </form>
+              {addSupabaseTaskError && (
+                <p className="text-sm text-destructive">{addSupabaseTaskError}</p>
+              )}
+              {supabaseTasks.length === 0 && !supabaseTasksError && (
+                <p className="text-sm text-muted-foreground">No tasks yet. Add one above.</p>
+              )}
+              {supabaseTasks.length > 0 && (
+                <ul className="divide-y divide-border rounded-lg border border-border">
+                  {supabaseTasks.map((task) => (
+                    <li
+                      key={task.id}
+                      className="flex items-center justify-between px-4 py-3 text-sm"
+                    >
+                      <span className="font-medium">{task.name}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {new Date(task.created_at).toLocaleDateString()}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </CardContent>
+          </Card>
+        </section>
+
+        <section className="mt-8" aria-label={t('developerTools')}>
           <Card className="border-dashed border-muted-foreground/30">
             <CardHeader className="pb-2">
               <CardTitle className="text-base">{t('developerTools')}</CardTitle>

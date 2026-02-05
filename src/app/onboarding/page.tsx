@@ -47,7 +47,10 @@ export default function OnboardingPage() {
       return;
     }
 
+    // Refresh JWT so proxy sees onboardingComplete on next request
     await getToken({ skipCache: true });
+    // Brief delay so cookie propagates before full-page redirect (avoids onboarding loop)
+    await new Promise((resolve) => setTimeout(resolve, 300));
     window.location.href = '/workspace';
   };
 

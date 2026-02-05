@@ -2,7 +2,10 @@
 
 ## Status
 
-**Stages 1–4 complete.** Stage 5 (Database/RLS) next.
+**Stages 1–5 implementation complete.** Stage 5 manual steps (run migration, test RLS) and Stages 6–7 pending.
+
+**Lesson 4.4 checklist:**  
+✅ Stage 1 Clerk + Supabase setup · ✅ Stage 2 Auth pages & UserButton · ✅ Stage 3 Protected routes (proxy) · ✅ Stage 4 3-screen onboarding · ✅ Stage 5 Database & RLS (code + migration; run migration & test) · ⬜ Stage 6 Testing & polish · ⬜ Stage 7 Documentation & commit
 
 ### Known issues / open tasks
 
@@ -106,22 +109,22 @@ Redirect URLs:
 
 **Create Authentication Pages:**
 - [x] Create `app/sign-up/[[...sign-up]]/page.tsx`
-- [ ] Add Clerk `<SignUp />` with `routing="path"` and `path="/sign-up"`
-- [ ] Style signup page to match design system (Clerk appearance prop or CSS)
-- [x] Create `app/sign-in/[[...sign-in]]/page.tsx` (currently at src/app, not (auth) group)
-- [ ] Add Clerk `<SignIn />` with `routing="path"` and `path="/sign-in"`
-- [ ] Style login page to match design system
-- [ ] Configure custom redirects in both components
-- [ ] Test signup flow: create account → redirects to onboarding
-- [ ] Test login flow: sign in → redirects to workspace
+- [x] Add Clerk `<SignUp />` (path routing via catch-all; redirects via env)
+- [ ] Style signup page to match design system (Clerk appearance prop or CSS) — optional polish
+- [x] Create `app/sign-in/[[...sign-in]]/page.tsx`
+- [x] Add Clerk `<SignIn />` (path routing via catch-all; redirects via env)
+- [ ] Style login page to match design system — optional polish
+- [x] Redirects: sign-up fallback → /onboarding, sign-in fallback → /workspace (env vars)
+- [ ] Test signup flow: create account → redirects to onboarding (manual)
+- [ ] Test login flow: sign in → redirects to workspace (manual)
 
 **Add User Button to Header:**
 - [x] Locate or create header component (e.g. in layout or a shared header)
 - [x] Import UserButton, SignedIn, SignedOut from `@clerk/nextjs`
 - [x] Add UserButton inside `<SignedIn>` in top-right of header
 - [x] Add SignInButton inside `<SignedOut>` for unauthenticated users
-- [ ] Style per design system
-- [ ] Test: Sign in → UserButton appears; click → Manage account / Sign out
+- [x] Header in root layout with UserButton / Sign in & Sign up
+- [ ] Test: Sign in → UserButton appears; click → Manage account / Sign out (manual)
 
 ### Stage 3: Protected Routes and Middleware
 
@@ -130,8 +133,8 @@ Redirect URLs:
 **AI agent actions:**
 - [x] Create `src/proxy.ts` (Next.js 16 uses proxy.ts; middleware.ts deprecated)
 - [x] Import `clerkMiddleware`, `createRouteMatcher` from `@clerk/nextjs/server`
-- [x] Define public routes: `createRouteMatcher(['/sign-in(.*)'])`; protects all others via `auth.protect()`
-- [ ] TODO: Refine to protect `/workspace(.*)` only; add `/sign-up`, `/`, `/onboarding` to public matcher
+- [x] Define public routes: `/`, `/sign-in(.*)`, `/sign-up(.*)`; allow `/onboarding(.*)` when authenticated
+- [x] Authenticated users without onboardingComplete → redirect to /onboarding; else allow (e.g. /workspace)
 
 - [x] Add config matcher for Next.js internals, static files, API routes
 - [x] Test: Visit /workspace signed out → redirect to /sign-in?redirect_url=...
@@ -160,7 +163,7 @@ Redirect URLs:
 **3. Server Action for Metadata:**
 - [x] Create `app/onboarding/actions.ts` with `"use server"`
 - [x] `completeOnboarding()`: uses `updateUserMetadata()` with awaited `clerkClient()`
-- [ ] Returns `{ success: true }` or `{ error: "message" }`; do NOT call redirect() in server action
+- [x] Returns `{ success: true }` or `{ error: "message" }`; no redirect() in server action
 
 **4. Client Completion Logic (JWT Refresh Pattern):**
 ```ts
@@ -185,39 +188,47 @@ const handleComplete = async () => {
 
 **Known issue:** Post-completion redirect can loop (see Known issues above).
 
-### Stage 5: Database Setup and RLS
+### Stage 5: Database Setup and RLS ✅ (implementation)
 
 **Reference:** [Clerk + Supabase Integration](https://clerk.com/docs/guides/development/integrations/databases/supabase)
 
-**Supabase setup (manual):**
+**Supabase setup (manual — user):**
 - [ ] Clerk Dashboard → [Supabase integration](https://dashboard.clerk.com/setup/supabase) → Activate
 - [ ] Supabase Dashboard → Authentication → Sign In / Up → Add provider → Clerk
 - [ ] Paste Clerk domain
 
-**AI agent actions:**
-- [ ] Create table with `user_id text not null default auth.jwt()->>'sub'`
-- [ ] Enable RLS on table
-- [ ] Create policies: SELECT and INSERT restricted to own user_id
-- [ ] Create Supabase client helper that passes Clerk session token (see Clerk docs)
+**Implementation (done):**
+- [x] **Clerk Supabase client:** `src/lib/supabase-clerk.ts` — `createSupabaseClientForClerk()` uses `auth().getToken()` so RLS sees Clerk user ID. Use in Server Actions / server code; requires `SUPABASE_ANON_KEY` in env (see `.env.example`).
+- [x] **Example table + RLS:** Migration `supabase/migrations/20260205120000_clerk_tasks_rls.sql` — `public.tasks` with `user_id` default `auth.jwt()->>'sub'`, RLS enabled, policies for SELECT/INSERT by own `user_id`.
+- [x] **Workspace demo:** "My tasks (Supabase RLS)" card on `/workspace` with list + add form (see `supabase-task-actions.ts`, workspace-client).
+
+**Remaining (user):**
+- [ ] Run migration (e.g. `supabase db push` or apply via dashboard)
 - [ ] Test: User A creates record → User B cannot see it; unauthenticated denied
 
-**Note:** No webhooks needed for basic auth + data isolation. Webhooks only needed for syncing profile data.
+**Note:** No webhooks needed for basic auth + data isolation. JWT templates not required — native integration.
 
 ### Stage 6: Testing and Polish
 
-- [ ] Test new user: signup → onboarding → workspace
-- [ ] Test returning user: login → workspace (skip onboarding)
-- [ ] Test error states: invalid email, weak password, email exists, wrong password
-- [ ] Test mobile responsive
-- [ ] Verify redirect_url works after login
-- [ ] Use Chrome DevTools MCP for visual verification if available
+**Checklist (run locally: `npm run dev`, then verify):**
+
+| Scenario | Pass/Fail | Notes |
+|----------|-----------|--------|
+| New user: signup → onboarding → workspace | [ ] | Create account, complete or skip onboarding, land on /workspace |
+| Returning user: login → workspace (skip onboarding) | [ ] | Sign in, go straight to /workspace |
+| Error states: invalid email, weak password, wrong password | [ ] | Clerk shows inline errors |
+| Unauthenticated → /workspace redirects to /sign-in | [ ] | returnBackUrl preserved |
+| After login, redirect to intended page | [ ] | redirect_url works |
+| Mobile responsive (auth + onboarding) | [ ] | Optional |
+| Data isolation (if migration run): User A vs User B tasks | [ ] | My tasks (Supabase RLS) card |
 
 ### Stage 7: Documentation and Commit
 
-- [ ] Update this PRD with ✅ for completed stages
-- [ ] Document environment variables in .env.example
-- [ ] Commit: `feat(auth): implement clerk authentication with supabase integration`
-- [ ] Update Linear sprint board
+- [x] Update this PRD with ✅ for completed stages
+- [x] Document environment variables in .env.example
+- [ ] **Commit** (await approval): `feat(auth): implement clerk authentication with supabase integration`
+- [ ] Push: `git push origin auth-flow` (triggers Vercel preview)
+- [ ] Update Linear sprint board (if used)
 
 ## Technical References
 

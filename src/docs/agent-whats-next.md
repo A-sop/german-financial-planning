@@ -11,7 +11,7 @@ Use this file to orient AI agents on current priorities and open tasks.
 | Task | Location | Notes |
 |------|----------|-------|
 | Fix onboarding completion loop | `auth-flow-prd.md` → Known issues | After Get Started/Skip, user may loop onboarding ↔ workspace. JWT/metadata timing. |
-| Stage 5: Clerk + Supabase RLS | `auth-flow-prd.md` | Database setup, user_id, RLS policies, Supabase client with Clerk token |
+| Stage 5: Clerk + Supabase RLS | `auth-flow-prd.md` | Done: `supabase-clerk.ts`, tasks migration. Remaining: run migration, test RLS (User A vs User B) |
 | Stage 6: Testing and polish | `auth-flow-prd.md` | Full auth flow testing, error states, mobile |
 | Stage 7: Documentation and commit | `auth-flow-prd.md` | Update PRD, commit, Linear |
 
