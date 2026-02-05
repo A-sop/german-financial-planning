@@ -57,3 +57,9 @@ secrets.local
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# clerk configuration (can include secrets)
+/.clerk/
+
+# private/internal reference (do not commit)
+/private/

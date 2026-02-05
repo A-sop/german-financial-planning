@@ -19,6 +19,10 @@ Use this file to orient AI agents on current priorities and open tasks.
 
 When working on Linear issues, include the issue ID in commit messages (e.g. `fix: onboarding loop. Fixes A-XX`). See `GIT-WORKFLOW.md`.
 
+## Cost estimates
+
+Use **average productivity** for new estimates. See `private/cost-estimate-reference.md` (gitignored).
+
 ## Key docs
 
 - `src/docs/auth-flow/auth-flow-prd.md` — Auth implementation plan
