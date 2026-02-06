@@ -69,8 +69,36 @@ const apiKey = process.env.OPENAI_API_KEY;
 
 ---
 
+### n8n (workflows)
+
+- **Used for:** Feedback processing with AI analysis, workflow automation, third-party integrations.
+- **Env key:** `N8N_FEEDBACK_WEBHOOK_URL` (webhook URL from n8n Webhook Trigger node, lesson 5.4)
+- **Where used:** 
+  - `src/app/actions/feedback.ts` — Server Action sends feedback to n8n (outgoing webhook)
+  - `src/app/api/webhooks/n8n/feedback/route.ts` — API route receives processed feedback from n8n (incoming webhook)
+  - `src/components/feedback-modal.tsx` — Client form component
+- **Setup guide:** [n8n-setup.md](./n8n-setup.md)
+- **PRD:** [user-feedback/user-feedback-prd.md](./user-feedback/user-feedback-prd.md)
+- **Current status:** Webhook integration complete (lesson 5.4). Security enhancements planned (lesson 5.5).
+
+**Workflow structure (lesson 5.4):**
+- Webhook Trigger → AI Tools Agent → Structured Output Parser → Auto-fixing Output Parser → Gmail → HTTP Request (callback to app)
+- AI Agent uses OpenRouter (free models available)
+- Returns structured JSON: `{ sentiment, category, priority, summary, actionable }`
+- HTTP Request sends enriched data back to app webhook endpoint
+
+**Security (lesson 5.5):**
+- **Rate limiting:** 10 requests/minute per IP (in-memory, works for single server)
+- **API key verification:** `X-API-Key` header verified against `N8N_WEBHOOK_SECRET`
+- **Request logging:** All attempts logged with `[WEBHOOK]` prefix for monitoring
+- **Environment variables:** `N8N_FEEDBACK_WEBHOOK_URL` (outgoing), `N8N_WEBHOOK_SECRET` (incoming verification)
+- Webhook URL stored in env var (server-only)
+- No API keys needed in app — n8n handles OpenRouter credentials internally
+- **Security guide:** [webhook-security.md](./webhook-security.md)
+
+---
+
 ## Planned (not yet wired)
-- n8n (workflows)
 - WhatsApp (Twilio)
 - Slack
 - Resend (email)
@@ -84,10 +112,19 @@ const apiKey = process.env.OPENAI_API_KEY;
 .env.local                — Your actual keys (never commit; create from .env.example)
 src/docs/INTEGRATIONS.md  — This file: setup guide and integration list
 src/docs/supabase-setup.md — Supabase project creation, keys, and verification
+src/docs/n8n-setup.md    — n8n workflow setup guide (lesson 5.2)
+src/docs/mobile-responsive-testing.md — Mobile responsive testing guide (lesson 5.3)
+src/docs/mobile-responsive-checklist.md — Quick testing checklist (lesson 5.3)
+src/docs/webhook-security.md — Webhook security guide (lesson 5.5)
 src/lib/openai.ts         — OpenAI client (server-only)
 src/lib/supabase-server.ts — Supabase admin client (server-only)
 src/lib/supabase-client.ts — Supabase browser client (client components; needs NEXT_PUBLIC_*)
+src/lib/schemas/feedback.ts — Feedback schemas (form data + structured analysis types)
+src/app/actions/feedback.ts — submitFeedback() server action (sends to n8n)
+src/app/api/webhooks/n8n/feedback/route.ts — Webhook endpoint (receives from n8n)
 src/app/workspace/supabase-actions.ts — testSupabaseConnection() server action
+supabase/migrations/20260206000000_feedback_table.sql — Feedback table migration
 src/app/workspace/actions.ts — testOpenAI() server action
 src/app/workspace/api-test-card.tsx — UI to trigger API test (Workspace page, bottom)
+src/components/feedback-modal.tsx — Feedback form component (lesson 5.1)
 ```
