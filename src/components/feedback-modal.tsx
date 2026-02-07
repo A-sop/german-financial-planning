@@ -73,22 +73,15 @@ function FeedbackFormContent() {
           rows={5}
           className="min-h-[120px] resize-y"
           disabled={status === 'loading'}
-          aria-invalid={!!errors.description || !!errorMessage}
+          aria-invalid={!!errors.description}
           aria-describedby={
-            errors.description || errorMessage
-              ? 'feedback-description-error'
-              : undefined
+            errors.description ? 'feedback-description-error' : undefined
           }
           {...register('description')}
         />
         {errors.description && (
           <p id="feedback-description-error" className="text-sm text-destructive">
             {errors.description.message}
-          </p>
-        )}
-        {errorMessage && !errors.description && (
-          <p id="feedback-description-error" className="text-sm text-destructive" role="alert">
-            {errorMessage}
           </p>
         )}
       </div>
