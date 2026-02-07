@@ -28,7 +28,15 @@
 | **Geist fonts** — Replaced with system fonts for build; optionally reintroduce via local font files if branding requires it. | low | med |
 | **OpenAI test card** — Consider moving from workspace to a dev/admin area for production cleanliness. | low | low |
 
-## 3. Fun
+## 3. Future — Admin access control
+
+| Item | Impact | Effort |
+|------|--------|--------|
+| **Admin-level access assignment** — Admins assign who has access to what (permissions, visibility). Not in scope now; revisit when needed. | high | high |
+
+---
+
+## 4. Fun
 
 | Item | Impact | Effort |
 |------|--------|--------|

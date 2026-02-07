@@ -98,6 +98,16 @@ const apiKey = process.env.OPENAI_API_KEY;
 
 ---
 
+---
+
+### Clerk (auth)
+
+- **Used for:** Sign-in, sign-up, sessions, onboarding.
+- **Env keys:** `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`, `CLERK_SECRET_KEY` (plus sign-in/up URLs in .env).
+- **Future projects / new Clerk app:** Add `*.vercel.app` to Clerk Dashboard → Configure → Domains. Covers all Vercel preview deployments in one go. Add once per Clerk application.
+
+---
+
 ## Planned (not yet wired)
 - WhatsApp (Twilio)
 - Slack
