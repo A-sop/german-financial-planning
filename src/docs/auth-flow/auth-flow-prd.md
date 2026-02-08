@@ -9,7 +9,7 @@
 
 ### Known issues / open tasks
 
-- [ ] **Fix onboarding completion loop** — After Get Started/Skip, user may loop between `/onboarding` and `/workspace`. Likely cause: JWT not yet refreshed when proxy runs on redirect, so `sessionClaims.metadata.onboardingComplete` is still stale. Consider: add short delay before redirect, use `router.refresh()`, or ensure `getToken({ skipCache: true })` completes and cookie propagates before `window.location.href`. Track in Linear if using (e.g. A-XX).
+- [x] **Fix onboarding completion loop** — Fixed: (1) After complete, we now wait 800ms, call `router.refresh()`, then `router.push('/workspace?onboarding=done')`. (2) Middleware allows through when path is `/workspace` and `?onboarding=done` is present (one-time bypass if JWT is still stale). (3) Workspace client strips `?onboarding=done` so the URL is clean. If the loop reappears, increase the delay or verify Clerk session token customization.
 
 ## Objective
 
@@ -193,9 +193,14 @@ const handleComplete = async () => {
 **Reference:** [Clerk + Supabase Integration](https://clerk.com/docs/guides/development/integrations/databases/supabase)
 
 **Supabase setup (manual — user):**
-- [ ] Clerk Dashboard → [Supabase integration](https://dashboard.clerk.com/setup/supabase) → Activate
-- [ ] Supabase Dashboard → Authentication → Sign In / Up → Add provider → Clerk
-- [ ] Paste Clerk domain
+- [ ] **Clerk:** [Setup → Supabase](https://dashboard.clerk.com/setup/supabase) → **Activate** (adds `role: authenticated` to session tokens).
+- [ ] **Supabase:** [Authentication → Third-Party](https://supabase.com/dashboard/project/_/auth/third-party) (or Auth → Sign In / Up) → **Add provider** → **Clerk** → paste the **Clerk domain** from Clerk (e.g. `https://your-app.clerk.accounts.dev`), no trailing slash.
+
+**If you still see "No suitable key or wrong key type":**
+1. Confirm **SUPABASE_ANON_KEY** in `.env.local` is the **anon (public)** key from Supabase API settings, not the secret/service_role key.
+2. **Sign out** of the app, then **sign in again** (or open an incognito window and sign in) so Clerk issues a new token with the Supabase integration.
+3. In **Clerk:** Setup → Supabase must show the integration as **Active**.
+4. In **Supabase:** Auth → Third-Party (or Providers) must list **Clerk** with the exact Clerk domain; same Clerk app as your `NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY`.
 
 **Implementation (done):**
 - [x] **Clerk Supabase client:** `src/lib/supabase-clerk.ts` — `createSupabaseClientForClerk()` uses `auth().getToken()` so RLS sees Clerk user ID. Use in Server Actions / server code; requires `SUPABASE_ANON_KEY` in env (see `.env.example`).

@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { useAuth } from '@clerk/nextjs';
 import { Button } from '@/components/ui/button';
 import { completeOnboarding } from './actions';
@@ -31,6 +32,7 @@ export default function OnboardingPage() {
   const [step, setStep] = useState(0);
   const [isCompleting, setIsCompleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const router = useRouter();
   const { getToken } = useAuth();
 
   const screen = screens[step];
@@ -47,11 +49,13 @@ export default function OnboardingPage() {
       return;
     }
 
-    // Refresh JWT so proxy sees onboardingComplete on next request
+    // Refresh JWT so middleware sees onboardingComplete on next request
     await getToken({ skipCache: true });
-    // Brief delay so cookie propagates before full-page redirect (avoids onboarding loop)
-    await new Promise((resolve) => setTimeout(resolve, 300));
-    window.location.href = '/workspace';
+    // Give Clerk time to persist updated session cookie before we navigate
+    await new Promise((resolve) => setTimeout(resolve, 800));
+    router.refresh();
+    // Use ?onboarding=done so middleware allows through if JWT is still stale (avoids loop)
+    router.push('/workspace?onboarding=done');
   };
 
   const handleSkip = () => {

@@ -1,7 +1,7 @@
 'use client';
 
-import { useState, Fragment, useCallback, type KeyboardEvent, type FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useState, Fragment, useCallback, useEffect, type KeyboardEvent, type FormEvent } from 'react';
+import { useRouter, useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
@@ -9,11 +9,13 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { useLocale } from '@/components/providers/locale-provider';
 import { cn } from '@/lib/utils';
-import { FolderOpen, ListTodo, FileText, Users, Clock, ChevronRight, ChevronUp, ChevronDown, Plus } from 'lucide-react';
+import { FolderOpen, ListTodo, FileText, Users, Clock, ChevronRight, ChevronUp, ChevronDown, Plus, Upload } from 'lucide-react';
 import type { WorkspaceData } from './actions';
 import { addTask } from './actions';
 import { addSupabaseTask } from './supabase-task-actions';
 import type { SupabaseTask } from './supabase-task-actions';
+import { uploadWorkspaceDocument } from './workspace-document-actions';
+import type { WorkspaceDocument } from './workspace-document-actions';
 import type { Case, Task, Document, Contact, TimelineEvent } from '@/lib/mock-data';
 import type { TaskStatus, TaskPriority } from '@/lib/mock-data';
 import type { PlannedFeature, FeaturesData } from './feature-actions';
@@ -219,6 +221,8 @@ type Props = {
   error?: string | null;
   supabaseTasks: SupabaseTask[];
   supabaseTasksError: string | null;
+  workspaceDocuments: WorkspaceDocument[];
+  workspaceDocumentsError: string | null;
 };
 
 function FeatureVoteRow({
@@ -275,9 +279,20 @@ export function WorkspaceClient({
   error,
   supabaseTasks,
   supabaseTasksError,
+  workspaceDocuments,
+  workspaceDocumentsError,
 }: Props) {
   const router = useRouter();
+  const searchParams = useSearchParams();
   const { t } = useLocale();
+
+  // Strip ?onboarding=done from URL after post-onboarding redirect (clean URL)
+  useEffect(() => {
+    if (searchParams.get('onboarding') === 'done') {
+      router.replace('/workspace');
+    }
+  }, [router, searchParams]);
+
   const [mainTab, setMainTab] = useState<(typeof MAIN_TABS)[number]['id']>('assignments');
   const [selectedCase, setSelectedCase] = useState<Case | null>(null);
   const [caseTab, setCaseTab] = useState<(typeof CASE_TABS)[number]['id']>('overview');
@@ -291,6 +306,8 @@ export function WorkspaceClient({
     'idle' | 'loading' | 'error'
   >('idle');
   const [addSupabaseTaskError, setAddSupabaseTaskError] = useState<string | null>(null);
+  const [uploadDocStatus, setUploadDocStatus] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [uploadDocError, setUploadDocError] = useState<string | null>(null);
 
   const { assignments, tasks, documents, contacts, timeline } = initialData;
   const { plannedFeatures, userSuggestions } = initialFeatures;
@@ -368,17 +385,42 @@ export function WorkspaceClient({
       if (!name) return;
       setAddSupabaseTaskStatus('loading');
       setAddSupabaseTaskError(null);
-      const result = await addSupabaseTask(name);
-      if (result.ok) {
-        setSupabaseTaskName('');
-        setAddSupabaseTaskStatus('idle');
-        router.refresh();
-      } else {
-        setAddSupabaseTaskError(result.error);
+      try {
+        const result = await addSupabaseTask(name);
+        if (result?.ok) {
+          setSupabaseTaskName('');
+          setAddSupabaseTaskStatus('idle');
+          router.refresh();
+        } else {
+          setAddSupabaseTaskError(result?.error ?? 'Failed to add task');
+          setAddSupabaseTaskStatus('error');
+        }
+      } catch (_err) {
+        setAddSupabaseTaskError('Server error. Check terminal for details.');
         setAddSupabaseTaskStatus('error');
       }
     },
     [supabaseTaskName, router]
+  );
+
+  const handleUploadDocument = useCallback(
+    async (e: FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      const form = e.currentTarget;
+      const formData = new FormData(form);
+      setUploadDocStatus('loading');
+      setUploadDocError(null);
+      const result = await uploadWorkspaceDocument(formData);
+      if (result.ok) {
+        setUploadDocStatus('idle');
+        form.reset();
+        router.refresh();
+      } else {
+        setUploadDocError(result.error);
+        setUploadDocStatus('error');
+      }
+    },
+    [router]
   );
 
   const bySection = (section: PlannedFeature['section']) =>
@@ -1054,79 +1096,128 @@ export function WorkspaceClient({
           </section>
         )}
 
-        <section
-          className="mt-12 border-t border-border pt-8"
-          aria-label="My tasks (Supabase RLS)"
-        >
-          <Card className="rounded-xl">
-            <CardHeader className="pb-2">
-              <CardTitle className="text-base">My tasks (Supabase RLS)</CardTitle>
-              <CardDescription>
-                Tasks stored in Supabase with Row Level Security — only your tasks are visible.
-                Requires Clerk + Supabase integration and migration applied.
-              </CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              {supabaseTasksError && (
-                <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive">
-                  {supabaseTasksError}
-                </p>
-              )}
-              <form onSubmit={handleAddSupabaseTask} className="flex gap-2">
-                <Input
-                  type="text"
-                  value={supabaseTaskName}
-                  onChange={(e) => {
-                    setSupabaseTaskName(e.target.value);
-                    setAddSupabaseTaskError(null);
-                  }}
-                  placeholder="New task name"
-                  disabled={addSupabaseTaskStatus === 'loading'}
-                  className="max-w-xs"
-                  aria-label="Task name"
-                />
-                <Button
-                  type="submit"
-                  disabled={!supabaseTaskName.trim() || addSupabaseTaskStatus === 'loading'}
-                >
-                  {addSupabaseTaskStatus === 'loading' ? '…' : 'Add'}
-                </Button>
-              </form>
-              {addSupabaseTaskError && (
-                <p className="text-sm text-destructive">{addSupabaseTaskError}</p>
-              )}
-              {supabaseTasks.length === 0 && !supabaseTasksError && (
-                <p className="text-sm text-muted-foreground">No tasks yet. Add one above.</p>
-              )}
-              {supabaseTasks.length > 0 && (
-                <ul className="divide-y divide-border rounded-lg border border-border">
-                  {supabaseTasks.map((task) => (
-                    <li
-                      key={task.id}
-                      className="flex items-center justify-between px-4 py-3 text-sm"
-                    >
-                      <span className="font-medium">{task.name}</span>
-                      <span className="text-xs text-muted-foreground">
-                        {new Date(task.created_at).toLocaleDateString()}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </CardContent>
-          </Card>
-        </section>
-
         <section className="mt-8" aria-label={t('developerTools')}>
           <Card className="border-dashed border-muted-foreground/30">
             <CardHeader className="pb-2">
               <CardTitle className="text-base">{t('developerTools')}</CardTitle>
               <CardDescription>{t('devTestPageDesc')}</CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className="space-y-6">
               <Button variant="outline" size="sm" asChild>
                 <Link href="/dev-test">{t('devTestPageLink')}</Link>
               </Button>
+
+              <div className="border-t border-border pt-4" aria-label="My tasks (Supabase RLS)">
+                <h3 className="text-sm font-semibold text-foreground mb-1">My tasks (Supabase RLS)</h3>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Tasks stored in Supabase with Row Level Security — only your tasks are visible.
+                </p>
+                {supabaseTasksError && (
+                  <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive mb-3">
+                    {supabaseTasksError}
+                  </p>
+                )}
+                <form onSubmit={handleAddSupabaseTask} className="flex gap-2">
+                  <Input
+                    type="text"
+                    value={supabaseTaskName}
+                    onChange={(e) => {
+                      setSupabaseTaskName(e.target.value);
+                      setAddSupabaseTaskError(null);
+                    }}
+                    placeholder="New task name"
+                    disabled={addSupabaseTaskStatus === 'loading'}
+                    className="max-w-xs"
+                    aria-label="Task name"
+                  />
+                  <Button
+                    type="submit"
+                    disabled={!supabaseTaskName.trim() || addSupabaseTaskStatus === 'loading'}
+                  >
+                    {addSupabaseTaskStatus === 'loading' ? '…' : 'Add'}
+                  </Button>
+                </form>
+                {addSupabaseTaskError && addSupabaseTaskError !== supabaseTasksError && (
+                  <p className="text-sm text-destructive mt-2">{addSupabaseTaskError}</p>
+                )}
+                {supabaseTasks.length === 0 && !supabaseTasksError && (
+                  <p className="text-sm text-muted-foreground mt-2">No tasks yet. Add one above.</p>
+                )}
+                {supabaseTasks.length > 0 && (
+                  <ul className="divide-y divide-border rounded-lg border border-border mt-3">
+                    {supabaseTasks.map((task) => (
+                      <li
+                        key={task.id}
+                        className="flex items-center justify-between px-4 py-3 text-sm"
+                      >
+                        <span className="font-medium">{task.name}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {new Date(task.created_at).toLocaleDateString()}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+
+              <div className="border-t border-border pt-4" aria-label="My documents">
+                <h3 className="text-sm font-semibold text-foreground mb-1">My documents</h3>
+                <p className="text-xs text-muted-foreground mb-3">
+                  Upload a document. Stored per user (RLS) — use to test data isolation.
+                </p>
+                {workspaceDocumentsError && (
+                  <p className="rounded-md bg-destructive/10 px-3 py-2 text-sm text-destructive mb-3">
+                    {workspaceDocumentsError}
+                  </p>
+                )}
+                <form onSubmit={handleUploadDocument} className="flex flex-wrap items-end gap-2">
+                  <div className="flex flex-col gap-1">
+                    <label htmlFor="workspace-doc-file" className="text-sm font-medium">
+                      File (optional — name is stored)
+                    </label>
+                    <Input
+                      id="workspace-doc-file"
+                      type="file"
+                      name="file"
+                      accept=".pdf,.doc,.docx,.txt,image/*"
+                      disabled={uploadDocStatus === 'loading'}
+                      className="max-w-xs"
+                      aria-label="Choose file"
+                    />
+                  </div>
+                  <Button
+                    type="submit"
+                    disabled={uploadDocStatus === 'loading'}
+                    className="gap-1.5"
+                  >
+                    <Upload className="h-4 w-4" aria-hidden />
+                    {uploadDocStatus === 'loading' ? '…' : 'Upload'}
+                  </Button>
+                </form>
+                {uploadDocError && uploadDocError !== workspaceDocumentsError && (
+                  <p className="text-sm text-destructive mt-2">{uploadDocError}</p>
+                )}
+                {workspaceDocuments.length === 0 && !workspaceDocumentsError && (
+                  <p className="text-sm text-muted-foreground mt-2">No documents yet. Upload one above.</p>
+                )}
+                {workspaceDocuments.length > 0 && (
+                  <ul className="divide-y divide-border rounded-lg border border-border mt-3">
+                    {workspaceDocuments.map((doc) => (
+                      <li
+                        key={doc.id}
+                        className="flex flex-wrap items-center justify-between gap-2 px-4 py-3 text-sm"
+                      >
+                        <span className="font-medium">{doc.filename}</span>
+                        <span className="text-xs text-muted-foreground">
+                          {doc.file_size != null ? `${(doc.file_size / 1024).toFixed(1)} KB` : ''}
+                          {doc.file_size != null && doc.created_at ? ' · ' : ''}
+                          {doc.created_at ? new Date(doc.created_at).toLocaleString() : ''}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
             </CardContent>
           </Card>
         </section>

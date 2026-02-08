@@ -14,9 +14,22 @@
 
 ---
 
+## Quick test: Clerk + Supabase (My tasks / My documents)
+
+After setting up Clerk ↔ Supabase (Clerk Dashboard → Supabase → Activate; Supabase → Auth → Add provider Clerk + paste domain):
+
+1. **Dev server running:** `npm run dev`
+2. **Sign in** (or sign up) and go to **Workspace** (skip or complete onboarding).
+3. **Developer tools** (bottom of workspace): you should **not** see the red "Add SUPABASE_URL…" or "No suitable key" errors.
+4. **My tasks:** Type a task name → **Add**. The task should appear in the list.
+5. **My documents:** Choose a file (or leave empty) → **Upload**. The document should appear in the list.
+6. If you see "relation does not exist" for tasks or workspace_documents: run `supabase db push` or apply the migrations in Supabase SQL editor.
+
+---
+
 ## 4.5 — Security verification
 
-- [ ] **Data isolation:** Log in as User A → create items (e.g. “My tasks” on workspace). Log out. Log in as User B → confirm User B does **not** see User A’s data.
+- [ ] **Data isolation:** Log in as User A → create items (e.g. “My tasks” on workspace, or **upload a document** in “My documents”). Log out. Log in as User B → confirm User B does **not** see User A’s data (no tasks, no documents from User A).
 - [ ] **Secrets:** Confirm no real keys in committed files; `.env.local` is in `.gitignore`. If you ever committed a key, rotate it and remove from history.
 
 ---
@@ -294,3 +307,50 @@
   - Spikes in requests (DDoS attempt)
 
 **Next (5.6):** Debug Production — Learn to debug production issues using Vercel logs and n8n execution history.
+
+---
+
+## Future Features — Planning
+
+### Document & Form Generation Tool (Founder Request)
+
+**Status:** Planning — Awaiting example data structure  
+**PRD:** `src/docs/letter-generation/letter-generation-prd.md`  
+**Legacy PRD:** `src/docs/insurance-cancellation/insurance-cancellation-prd.md` (superseded)
+
+**Overview:** Comprehensive document, letter, and form generation tool for family office / full-service operations. Drafts formal documents on behalf of clients (letters, documents, legal forms like Vollmacht), manages template wording libraries, sends PDFs to clients for signature via WhatsApp or email, and manages complete workflow from draft to signed delivery.
+
+**Current Stage:** Stage 0 — Data Structure Planning
+
+- [ ] **Review example data structure:** When founder provides example data/table headers, review and refine database schema
+- [ ] **Finalize requirements:** Confirm document types, Vollmacht types, required fields, legal requirements, template wording structure
+- [ ] **Create implementation plan:** Break down into development stages (see PRD)
+
+**Key Features:**
+- Document generation (letters, formal documents, legal forms)
+- Form generation (Vollmacht - specific and general, other legal forms)
+- Template wording library system with versioning
+- AI-powered drafting with OpenAI + template wording
+- Internal approval workflow
+- PDF generation (DIN-compliant, fillable fields for forms)
+- Client delivery via WhatsApp or Email
+- Client signature collection (digital or physical)
+- Final delivery to recipients (optional)
+- Complete audit trail
+
+**Next Steps (after data review):**
+- Stage 1: Database & Core Schemas (migrations for `documents` and `document_templates` tables, Zod schemas, RLS)
+- Stage 2: Template Management System (wording library, versioning, CRUD)
+- Stage 3: Document Creation & Drafting (form, OpenAI, template integration)
+- Stage 4: Approval Workflow (review, edit, approve)
+- Stage 5: PDF Generation (DIN-compliant formatting, fillable fields)
+- Stage 6: Client Delivery (WhatsApp & Email integration)
+- Stage 7: Signature Collection (digital/physical)
+- Stage 8: Final Delivery & Management (recipient delivery, UI)
+
+**Integration Points:**
+- Uses existing OpenAI integration for letter drafting
+- Leverages existing document generation system (DIN-compliant)
+- Follows existing approval workflow patterns
+- Links to assignment/client system
+- Stores in Supabase with RLS policies

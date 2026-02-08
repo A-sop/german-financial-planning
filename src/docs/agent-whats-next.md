@@ -27,6 +27,7 @@ Use **average productivity** for new estimates. See `private/cost-estimate-refer
 - `src/docs/mobile-responsive-testing.md` — Mobile responsive testing guide (lesson 5.3)
 - `src/docs/user-feedback/user-feedback-prd.md` — User Feedback System PRD (lesson 5.4)
 - `src/docs/webhook-security.md` — Webhook security guide (lesson 5.5)
+- `src/docs/letter-generation/letter-generation-prd.md` — Letter Generation Tool feature (planning, includes insurance cancellations)
 - `src/docs/auth-flow/auth-flow-prd.md` — Auth implementation plan
 - `src/docs/workspace-prd.md` — Workspace feature
 - `GIT-WORKFLOW.md` — Branching, commits, PRs
