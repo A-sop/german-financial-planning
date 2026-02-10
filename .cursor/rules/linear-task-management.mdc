@@ -1,0 +1,289 @@
+# Linear Task Management & Prefix System
+
+**Purpose:** Structured task ownership, permission, and execution scope across multi-product, human-in-the-loop system.
+
+**Context:** This system applies to all projects. The current app (`my-app`) is a learning/test case for **CM (Consulting & More)**.
+
+---
+
+## Prefix Structure
+
+All Linear issues and tasks use structured prefixes:
+
+```
+[OWNER]-[DOMAIN]-[SURFACE] Task description
+```
+
+### OWNERS (Project Identifiers)
+
+| Prefix | Owner | Project |
+|--------|-------|---------|
+| `CM` | Consulting & More | Reza's business / concierge system (this app is a test case for CM) |
+| `LDW` | Logan Williams | Logan's personal branding website |
+| `LT` | Logan Tools | Productised internal or external tools |
+| `GFP` | German Financial Planning | Regulated financial planning business (high compliance sensitivity) |
+
+**Note:** Owner prefixes identify **which project** the task belongs to, not permission level.
+
+### DOMAINS (Permission & Scope)
+
+| Prefix | Domain | Permission | Scope |
+|--------|--------|------------|-------|
+| `BIZ` | Business | **Human Required** | Big picture, strategy, content, compliance, outreach, positioning, marketing, one-way-door decisions |
+| `OPS` | Operations | **Human-in-the-loop** | Day-to-day operational work, recurring tasks, running existing processes for real clients |
+| `DEV` | Development | **Can Execute** | Code, systems, automation, infrastructure, technical implementation |
+
+**Key Rule:** 
+- **`-BIZ-`** = Strategic / directional decisions → humans decide, AI assists.
+- **`-OPS-`** = Operative daily work → humans act, AI prepares/checklists/automation.
+- **`-DEV-`** = Technical implementation → AI can execute autonomously in code.
+
+### SURFACES (Optional)
+
+| Prefix | Surface | Scope |
+|--------|---------|-------|
+| `WEB` | Web | Public website, landing pages, marketing site |
+| `APP` | Application | Dashboard, system, authenticated app interface |
+
+**Note:** If SURFACE is omitted, task applies across all surfaces.
+
+---
+
+## Execution Rules
+
+### 1. -BIZ- Tasks (Human Required – Strategy & Direction)
+
+**Rule:** Any task with `-BIZ-` requires **human judgment, decisions, or approval**.
+
+**Why:** Business tasks involve big picture thinking, strategy, content decisions, compliance, positioning - these require human judgment.
+
+**Allowed:**
+- ✅ Draft, outline, suggest, or prepare materials
+- ✅ Research and present options
+- ✅ Create content drafts for review
+- ✅ Propose strategies or approaches
+
+**Forbidden:**
+- ❌ Making final decisions autonomously
+- ❌ Publishing content without approval
+- ❌ Assuming business strategy without confirmation
+- ❌ Finalizing compliance or positioning decisions
+
+**Examples:**
+- `CM-BIZ`: "Draft pricing strategy options" → Draft options, human decides
+- `CM-BIZ-WEB`: "Update pricing page copy" → Draft copy, human approves
+- `GFP-BIZ`: "Research GDPR requirements" → Research and present, human decides approach
+- `LDW-BIZ`: "Define personal brand messaging" → Draft options, human chooses
+
+### 2. -OPS- Tasks (Operations – Daily Work)
+
+**Rule:** Any task with `-OPS-` is about **running the machine**: real-world, often repeatable work for actual clients or the business.
+
+**Why:** OPS tasks are where strategy (BIZ) and systems (DEV) meet real people and money. They must stay human-in-the-loop, even when highly templated or automated.
+
+**Typical examples:**
+- CM-OPS: Running concierge workflows, updating assignments, sending prepared messages.
+- GFP-OPS: Preparing and sending regulated documents (using approved templates), logging client interactions.
+- LDW-OPS: Publishing pre-approved blog posts, updating portfolio entries.
+- LT-OPS: Operating internal tools, running scheduled jobs that affect real data.
+
+**Allowed (for me):**
+- ✅ Design and refine checklists and SOPs.
+- ✅ Draft messages, emails, and documents for you to send.
+- ✅ Generate scripts/queries to run (you execute).
+- ✅ Suggest automations (n8n flows, cron jobs, agents).
+
+**Forbidden (for me):**
+- ❌ Directly triggering irreversible or external actions (sending emails, charging cards, changing production data) unless you explicitly say “go ahead and execute this”.
+- ❌ Deciding on exceptions (e.g. waiving fees, making one-off promises) — that’s BIZ.
+
+**Examples:**
+- `CM-OPS-APP`: “Process today’s new client intakes in the workspace” → I can give you a checklist; you run it.
+- `GFP-OPS-WEB`: “Send monthly regulatory reminder emails” → I draft templates; you send or schedule them.
+- `LDW-OPS-WEB`: “Publish this pre-approved case study” → I prepare content and steps; you click publish.
+
+---
+
+### 3. -DEV- Tasks (Can Execute – Technical)
+
+**Rule:** Tasks with `-DEV-` can be **executed autonomously** (write code, implement features, fix bugs).
+
+**Why:** Development tasks are technical implementation - these can be done autonomously.
+
+**Allowed:**
+- ✅ Write code, refactor, generate files
+- ✅ Implement features as requested
+- ✅ Create migrations, update configs
+- ✅ Fix bugs, optimize performance
+- ✅ Set up infrastructure
+- ✅ Deploy (unless marked otherwise)
+
+**When to Ask:**
+- ⚠️ If requirements are unclear
+- ⚠️ If implementation approach needs approval
+- ⚠️ If it affects business logic or user experience significantly
+
+**Examples:**
+- `CM-DEV`: "Implement feedback modal component" → Execute directly
+- `CM-DEV-APP`: "Add user profile page" → Execute directly
+- `LDW-DEV`: "Build portfolio gallery component" → Execute directly
+- `LT-DEV`: "Add API rate limiting middleware" → Execute directly
+- `GFP-DEV`: "Add audit logging feature" → Execute, but ensure compliance requirements met
+
+### 4. GFP Tasks (Regulatory Sensitivity)
+
+**Rule:** GFP tasks must be handled **conservatively** due to regulatory compliance.
+
+**Principles:**
+- Assume regulatory, trust, and compliance sensitivity
+- Prefer clarity, restraint, and reliability over creativity or growth hacks
+- When in doubt, ask before proceeding
+- Document compliance considerations
+
+**Applies to both BIZ and DEV:**
+- `GFP-BIZ`: Business decisions require extra care (compliance, regulatory)
+- `GFP-DEV`: Technical implementation must meet compliance requirements
+
+**Examples:**
+- `GFP-BIZ`: "Draft client communication" → Conservative, compliant tone, human approves
+- `GFP-DEV`: "Add audit logging" → Ensure compliance requirements met, can execute
+
+### 5. CM Tasks (Client Project)
+
+**Rule:** CM tasks are for Reza's business (Consulting & More).
+
+**Guidelines:**
+- `CM-BIZ` tasks require alignment with Reza's intent (human decides)
+- `CM-DEV` tasks can be executed, but ask if unclear
+- This app (`my-app`) is a learning/test case for CM
+- Treat CM tasks as if building for a client (respect their vision)
+
+**Examples:**
+- `CM-DEV`: "Add feature X" → Implement, but confirm if unclear
+- `CM-BIZ`: "Update pricing page copy" → Draft options, confirm with Reza
+
+### 6. LDW Tasks (Personal Project)
+
+**Rule:** LDW tasks are for Logan's personal branding website.
+
+**Guidelines:**
+- `LDW-BIZ` tasks require Logan's decisions (personal brand, messaging)
+- `LDW-DEV` tasks can be executed autonomously (technical implementation)
+
+**Examples:**
+- `LDW-DEV`: "Build portfolio gallery" → Execute directly
+- `LDW-BIZ`: "Define personal brand messaging" → Draft options, Logan decides
+
+---
+
+## General Behavior
+
+### Prefix Enforcement
+
+- **Always respect the prefix system as a permission gate**
+- **`-BIZ-` = Strategy/decisions (human-led)**
+- **`-OPS-` = Operations (human-in-the-loop, AI assists)**
+- **`-DEV-` = Technical implementation (AI can execute in code)**
+- **If a task's prefix is ambiguous or missing, ask for clarification before proceeding**
+- **When in doubt, default to ASSIST, not EXECUTE**
+
+### Missing Prefixes
+
+**Default behavior for tasks without prefixes:**
+- If in `my-app` (CM test case): Treat as `CM-DEV` (can execute, but ask if unclear)
+- If in other projects: Ask for clarification
+- Never assume ownership or execution permission
+
+### Status Indicators
+
+When updating Linear issues, use clear status language:
+
+- **`[Human Review]` in title/description:** Human action required (for BIZ tasks or DEV tasks needing approval)
+- **`✅ Ready for review`:** Code/files ready, waiting for human approval
+- **`⏳ Blocked on [X]`:** Waiting for prerequisite
+- **`🔄 In progress`:** Actively working (agent or human)
+
+### Cross-Project Context
+
+**This app (`my-app`):**
+- Learning/test case for **CM (Consulting & More)**
+- Happens to be live (testing for Reza's business)
+- Use `CM-` prefix for all tasks related to this project
+- `CM-DEV` = Development tasks (can execute)
+- `CM-BIZ` = Business tasks (human required)
+
+**Other projects:**
+- **LDW** = Logan's personal branding website
+- **LT** = Logan Tools (productized tools)
+- **GFP** = German Financial Planning (regulated business)
+- Apply same prefix system across all projects
+- When creating issues, always include appropriate prefix
+
+---
+
+## Examples
+
+### ✅ Correct Usage
+
+```
+CM-DEV-APP: Implement feedback modal component
+CM-BIZ-WEB: Draft pricing page copy (3 options for review)
+LDW-DEV: Build portfolio gallery component
+LDW-BIZ: Define personal brand messaging (draft options)
+GFP-BIZ: Research GDPR requirements for client data storage
+GFP-DEV: Add audit logging feature
+LT-DEV: Add API rate limiting middleware
+```
+
+### ❌ Incorrect Usage
+
+```
+Implement payment system (missing prefix - ask for clarification)
+CM-DEV: Review payment implementation PR (should be CM-BIZ if review/decision needed)
+CM-BIZ: Publish pricing page (should be "Draft pricing page" - publishing requires approval)
+LDW-DEV: Human required task (LDW is project, not "human required" - use CM-BIZ or add [Human Review])
+```
+
+### Clarification Examples
+
+**If you see:**
+- `CM-DEV: Implement feature X` → ✅ Execute directly
+- `CM-BIZ: Decide on pricing strategy` → ✅ Draft options, wait for human decision
+- `LDW-DEV: Build contact form` → ✅ Execute directly (LDW is project, DEV means can execute)
+- `LDW-BIZ: Write about page copy` → ✅ Draft copy, wait for human approval (LDW is project, BIZ means human required)
+
+---
+
+## Integration with Linear
+
+**When creating Linear issues:**
+1. Always include prefix in title: `[OWNER]-[DOMAIN]-[SURFACE] Description`
+2. Use `-BIZ-` for business/strategy/content tasks (human required)
+3. Use `-DEV-` for development/technical tasks (can execute)
+4. Add prefix explanation in description if context needed
+
+**When updating Linear issues:**
+1. Respect prefix permissions (`-BIZ-` = human required, `-DEV-` = can execute)
+2. Update status clearly (Ready for review, Blocked, In progress)
+3. Add `[Human Review]` tag in description if human action needed mid-task
+
+**For this project (my-app):**
+- All tasks should use `CM-` prefix (Consulting & More)
+- Strategy/positioning/pricing: `CM-BIZ` (human required)
+- Day-to-day concierge ops / running flows: `CM-OPS` (human-in-the-loop)
+- Development: `CM-DEV` (can execute)
+
+---
+
+## Acknowledgment
+
+**I acknowledge this prefix system and will:**
+- ✅ Use `-BIZ-` for business/strategy tasks (human judgment required)
+- ✅ Use `-OPS-` for operative daily work (human-in-the-loop, AI assists)
+- ✅ Use `-DEV-` for development tasks (can execute autonomously)
+- ✅ Understand that owner prefixes (CM, LDW, LT, GFP) identify projects, not permissions
+- ✅ Ask for clarification when prefixes are missing or ambiguous
+- ✅ Default to ASSIST mode when uncertain
+- ✅ Use prefixes consistently in Linear issues
+- ✅ Treat GFP tasks with regulatory sensitivity
+- ✅ Align CM tasks with Reza's business intent
