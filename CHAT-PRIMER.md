@@ -26,14 +26,27 @@ Use this for new Composer/Chat sessions and when you say "I'm back" or "I'm done
 
 ## When you say "I'm back" / new chat
 
-Agent should give you a **short ELI5 reminder** (2–4 bullets), not paste this whole section:
+Agent should:
 
-1. **Node & deps:** `node -v` to check Node; run `npm install` in the project folder.
-2. **Env:** Copy `.env.example` → `.env.local`, fill in keys (Clerk, Supabase). See `.env.example` and `src/docs/INTEGRATIONS.md`.
-3. **Run:** `npm run dev` → open http://localhost:3000.
-4. **Human to-dos:** One place: `src/docs/human-todos.md`.
+1. Read **"Session handoff"** below (if present) and remind the user.
+2. Give a **short ELI5 reminder** (2–4 bullets), not paste this whole section:
+   - **Node & deps:** `node -v` to check Node; run `npm install` in the project folder.
+   - **Env:** Copy `.env.example` → `.env.local`, fill in keys (Clerk, Supabase). See `.env.example` and `src/docs/INTEGRATIONS.md`.
+   - **Run:** `npm run dev` → open http://localhost:3000.
+   - **Human to-dos:** One place: `src/docs/human-todos.md`.
+3. (Optional: check branch — `git branch --show-current`; auth often `auth-flow`, feedback `user-feedback`.)
 
-(Optional: check branch — `git branch --show-current`; auth often `auth-flow`, feedback `user-feedback`.)
+---
+
+## Session handoff (2026-02-12)
+
+**Committed & pushed:** loganwilliams-website (Impressum, value log).
+
+**Committed locally, NOT pushed:** logans-tools — no remote configured. To push: `git remote add origin <url>` then `git push -u origin master`.
+
+**logans-tools changes:** Concierge screenshot, Using/Offboarding, centered header, Impressum, screenshot automation (`scripts/README-screenshot-landing.md`), GitHub Action (Sundays + manual).
+
+**Upcoming:** 5.5 Webhook Security (my-app); push logans-tools when repo exists; hydration warning (Cursor extension — optional to debug).
 
 ---
 
