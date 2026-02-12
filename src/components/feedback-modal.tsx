@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import { createContext, useContext, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -19,7 +20,7 @@ import { submitFeedback } from '@/app/actions/feedback';
 
 const FeedbackModalContext = createContext<{
   open: boolean;
-  setOpen: (open: boolean) => void;
+  setOpen: (_open: boolean) => void;
 } | null>(null);
 
 function useFeedbackModal() {
@@ -114,7 +115,7 @@ function FeedbackFormContent() {
 }
 
 /** Wrap layout (or app) so the trigger can open the modal from anywhere. */
-export function FeedbackModalProvider({ children }: { children: React.ReactNode }) {
+export function FeedbackModalProvider({ children }: { children: ReactNode }) {
   const [open, setOpen] = useState(false);
   return (
     <FeedbackModalContext.Provider value={{ open, setOpen }}>

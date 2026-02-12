@@ -20,7 +20,7 @@ All Linear issues and tasks use structured prefixes:
 |--------|-------|---------|
 | `CM` | Consulting & More | Reza's business / concierge system (my-app) |
 | `LDW` | Logan Williams | Logan's personal branding website (loganwilliams.com) — this project |
-| `LT` | Logan Tools | Productised internal or external tools |
+| `LT` | Logan Tools | logans.tools — productised internal or external tools |
 | `GFP` | German Financial Planning | Regulated financial planning business (high compliance sensitivity) |
 
 **Note:** Owner prefixes identify **which project** the task belongs to, not permission level. You can create Linear issues for any project from this IDE—it's the central task-management hub when working across projects in parallel.

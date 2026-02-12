@@ -109,6 +109,15 @@ const apiKey = process.env.OPENAI_API_KEY;
 
 ---
 
+### Ahrefs (SEO) — **Deferred**
+
+- **Status:** On backburner. API requires $500+/mo; no free tier. Scraping prohibited (ToS ban risk).
+- **What exists:** `src/lib/ahrefs.ts`, `scripts/ahrefs-test.ts`, [ahrefs-setup.md](./ahrefs-setup.md)
+- **For now:** Use manual research (Ubersuggest, Google Keyword Planner, Ahrefs UI export) → update `SEO-KEYWORDS.md` by hand.
+- **Backlog:** [src/docs/seo/SEO-BACKLOG.md](./seo/SEO-BACKLOG.md)
+
+---
+
 ## Planned (not yet wired)
 - WhatsApp (Twilio)
 - Slack

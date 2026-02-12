@@ -164,7 +164,7 @@ export default function ComponentShowcasePage() {
           <CardHeader>
             <CardTitle>4. ErrorMessage</CardTitle>
             <CardDescription>
-              Custom-built. Inline error message. Uses text-destructive and role="alert".
+              Custom-built. Inline error message. Uses text-destructive and role=&quot;alert&quot;.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6">

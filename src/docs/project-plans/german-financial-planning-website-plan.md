@@ -10,6 +10,26 @@
 
 ---
 
+## Inspiration & Positioning
+
+### Urban Finance (Sebastian Urban) — Design & Structure
+
+**URL:** https://www.urbanfinance.de/
+
+**Use for:** Dark theme, hero layout, service structure, aspirational copy, transparent value props. Closest visual/reference in the German expat financial space.
+
+**Important difference:** Sebastian Urban is an **Honorarberater** (fee-only advisor). Clients pay directly for advice (e.g. urPlan €1,995, urInvest €995). No commission from products. He is *provisionsfrei gegen Honorar*.
+
+### Logan / GFP — Provision-Based Model
+
+**URL:** https://www.allfinanz.ag/logan.williams/index.html
+
+Logan works with **Allfinanz / Deutsche Vermögensberatung (DVAG)**. Model: no direct fee for advice; commission when clients sign contracts (insurance, investment products). Commission is built into product prices. Per Allfinanz FAQ: *"Es entstehen für Sie im Rahmen eines Finanzcoachings keine direkten Kosten. Sollten Sie Verträge abschließen, wird eine Provision fällig. Diese bezahlen Sie als Kunde nicht direkt."*
+
+**For the site:** Borrow Urban Finance’s dark aesthetic, structure, and clarity — but position GFP’s offering honestly (provision-based, not Honorar). Messaging and CTAs will differ (no "provisionsfrei" claim; focus on holistic coaching, ongoing support, one point of contact).
+
+---
+
 ## MVP Scope
 
 ### Phase 1 — Marketing Site (Today’s MVP)

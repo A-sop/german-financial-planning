@@ -8,7 +8,7 @@ export interface LikeToggleButtonProps
   extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'children' | 'onToggle'> {
   count: number;
   isLiked?: boolean;
-  onToggle?: (liked: boolean) => void;
+  onToggle?: (_liked: boolean) => void;
 }
 
 /**

@@ -1,5 +1,6 @@
 'use client';
 
+import type { ReactNode } from 'react';
 import Link from 'next/link';
 
 import { cn } from '@/lib/utils';
@@ -10,7 +11,7 @@ export interface NavItem {
 }
 
 export interface AppHeaderProps {
-  logo?: React.ReactNode;
+  logo?: ReactNode;
   /** Logo text or link content when no custom logo */
   logoHref?: string;
   logoLabel?: string;

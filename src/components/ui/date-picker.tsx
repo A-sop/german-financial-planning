@@ -6,7 +6,7 @@ import { cn } from '@/lib/utils';
 
 export interface DatePickerProps {
   value?: Date | null;
-  onChange?: (date: Date | undefined) => void;
+  onChange?: (_date: Date | undefined) => void;
   placeholder?: string;
   className?: string;
   /** Dark theme variant matching date-picker design */

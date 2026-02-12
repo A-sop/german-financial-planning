@@ -8,7 +8,6 @@ const path = require('path');
 
 const root = path.join(__dirname, '..');
 const envLocalPath = path.join(root, '.env.local');
-const examplePath = path.join(root, '.env.example');
 
 const required = [
   'OPENAI_API_KEY',
@@ -25,6 +24,7 @@ const optional = [
   'NEXT_PUBLIC_CLERK_SIGN_UP_URL',
   'NEXT_PUBLIC_CLERK_SIGN_IN_FALLBACK_REDIRECT_URL',
   'NEXT_PUBLIC_CLERK_SIGN_UP_FALLBACK_REDIRECT_URL',
+  'AHREFS_API_KEY',
 ];
 
 function parseEnv(filePath) {
