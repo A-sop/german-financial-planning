@@ -8,9 +8,20 @@ export const metadata: Metadata = {
     'Simple monthly pricing for the Consulting & More workspace. One operator and one assistant to keep German bureaucracy under control.',
 };
 
-export default function PricingPage() {
+type PricingPageProps = {
+  searchParams: Promise<{ reason?: string }>;
+};
+
+export default async function PricingPage({ searchParams }: PricingPageProps) {
+  const { reason } = await searchParams;
+
   return (
     <main className="mx-auto flex max-w-5xl flex-col gap-12 px-4 py-12">
+      {reason === 'workspace' && (
+        <div className="rounded-lg border border-primary/30 bg-primary/5 px-4 py-3 text-center text-sm text-foreground">
+          Subscribe to CM Operator to access the workspace.
+        </div>
+      )}
       <section className="space-y-4 text-center">
         <h1 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
           Pricing for Consulting &amp; More operators

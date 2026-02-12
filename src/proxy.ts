@@ -4,12 +4,13 @@ import { NextResponse } from 'next/server';
 const isPublicRoute = createRouteMatcher(['/', '/sign-in(.*)', '/sign-up(.*)', '/pricing(.*)']);
 const isOnboardingRoute = createRouteMatcher(['/onboarding(.*)']);
 const isAuthExemptAfterLoginRoute = createRouteMatcher(['/onboarding(.*)', '/pricing(.*)']);
+const isWorkspaceRoute = createRouteMatcher(['/workspace(.*)']);
 
 export default clerkMiddleware(async (auth, req) => {
   // Server Action requests must reach the handler so they return RSC, not a redirect
   if (req.headers.get('next-action')) return NextResponse.next();
 
-  const { isAuthenticated, sessionClaims, redirectToSignIn } = await auth();
+  const { isAuthenticated, sessionClaims, redirectToSignIn, has } = await auth();
 
   // Allow unauthenticated users to access public routes
   if (!isAuthenticated) {
@@ -46,6 +47,16 @@ export default clerkMiddleware(async (auth, req) => {
       }
     }
     return NextResponse.redirect(new URL('/onboarding', req.url));
+  }
+
+  // Workspace requires cm_operator plan — redirect to pricing if not subscribed
+  if (isWorkspaceRoute(req)) {
+    const hasCmOperator = has?.({ plan: 'cm_operator' }) ?? false;
+    if (!hasCmOperator) {
+      const pricingUrl = new URL('/pricing', req.url);
+      pricingUrl.searchParams.set('reason', 'workspace');
+      return NextResponse.redirect(pricingUrl);
+    }
   }
 
   return NextResponse.next();
