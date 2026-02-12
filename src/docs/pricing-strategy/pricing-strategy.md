@@ -122,24 +122,32 @@ This range:
 
 ## 3. Pricing Tiers
 
-We start with **2 concrete tiers** designed around the main operator value range (~€79–99/month) and leave room for a future team/firms tier.
+We have **4 tiers** in scope: Observer (cheaper), Operator (main), Captain/Instigator (premium), and CM Team (future).
 
 ### 3.1 Tier Overview
 
-1. **CM Operator** (Main tier)  
+1. **CM Observer** (Cheaper tier — details TBD) — Price TBD (below Operator). Entry-level / read-only use cases. Planned.
+
+2. **CM Operator** (Main tier)  
    - **Price target:** **€89 / month** (initial target within the €79–99 band)  
    - **Who it’s for:**  
      - A single CM operator (like our blind executive) handling bureaucracy for multiple client households.  
      - Includes **1 assistant seat** who can work inside the system.
    - **Core promise:** Centralize obligations, documents, and workflows so *any* assistant can reliably execute, even if the operator is away.
 
-2. **CM Team** (Future – not required for MVP)  
+3. **CM Captain / Instigator** (Premium tier — details TBD) — Special feature implementation. Name and features TBD.
+
+4. **CM Team** (Future – roadmap)  
    - **Price rough target:** **€179–199 / month**  
    - **Who it’s for:**  
      - Small teams (2–3 operators) with multiple assistants and higher document volume.  
    - **Status:** Documented as a **roadmap tier**; we won’t block MVP on implementing it, but design now so the pricing story is coherent.
 
-> For MVP, we only need to implement billing for **CM Operator**. CM Team stays as a visible “Coming soon” / “Contact us” anchor if we choose to show it.
+### 3.1.1 Test discount codes (99% off)
+
+Create a **99% off** coupon in Clerk Billing / Stripe to test real payment flow on your bank account (e.g. €89 plan → ~€0.89 charge).
+
+> For MVP, billing is implemented for **CM Operator**. Observer, Captain/Instigator, CM Team can be added in Clerk when ready.
 
 ### 3.2 CM Operator – Details
 
