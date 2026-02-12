@@ -20,6 +20,8 @@ Use this for new Composer/Chat sessions and when you say "I'm back" or "I'm done
 
 **Branches:** `auth-flow` (auth, merge when ready). `user-feedback` (feedback modal).
 
+**Future / backlog:** Web analytics — user wants analytics for: (1) this app (Consulting & More), (2) personal site, (3) German Financial Planning project. Add when ready.
+
 ---
 
 ## When you say "I'm back" / new chat
