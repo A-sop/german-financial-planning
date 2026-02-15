@@ -1,3 +1,5 @@
+import type { ReactNode } from 'react';
+
 export const metadata = {
   title: 'Advice',
   description:
@@ -7,7 +9,7 @@ export const metadata = {
 export default function AdviceLayout({
   children,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
 }) {
   return <>{children}</>;
 }
