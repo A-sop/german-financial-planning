@@ -1,52 +1,48 @@
+'use client';
+
 import Link from 'next/link';
+import { useLocale } from '@/components/providers/locale-provider';
+import { LanguageToggle } from '@/components/language-toggle';
 
 export function SiteFooter() {
+  const { t } = useLocale();
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-border mt-auto">
+    <footer className="mt-auto border-t border-border bg-muted/20">
       <div className="mx-auto max-w-6xl px-4 py-8">
-        <div className="flex flex-col gap-6 sm:flex-row sm:items-center sm:justify-between">
-          <div className="flex flex-wrap gap-4 text-sm">
-            <Link
-              href="/legal"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Legal / Impressum
-            </Link>
-            <Link
-              href="/legal#datenschutz"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Datenschutz
-            </Link>
-            <a
-              href="mailto:inbox@loganwilliams.com"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              Contact
-            </a>
-          </div>
-          <a
-            href="https://www.linkedin.com/in/logandwilliams/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-muted-foreground transition-colors hover:text-foreground"
-            aria-label="LinkedIn"
+        <div className="flex flex-wrap gap-4 text-sm">
+          <Link
+            href="/legal"
+            className="text-muted-foreground transition-colors hover:text-foreground"
           >
-            LinkedIn
+            {t('footerImprint')}
+          </Link>
+          <Link
+            href="/legal#datenschutz"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t('footerPrivacy')}
+          </Link>
+          <a
+            href="mailto:Logan.Williams@allfinanz.ag?subject=Anfrage zur Vermögensberatung"
+            className="text-muted-foreground transition-colors hover:text-foreground"
+          >
+            {t('footerContact')}
           </a>
         </div>
-        <p className="mt-6 text-xs text-muted-foreground">
-          © {currentYear} Logan Williams. All rights reserved.
-          {' · '}
-          <Link
-            href="/legal#impressum"
-            className="text-primary underline underline-offset-2 hover:text-primary/90 transition-colors"
-          >
-            Impressum
-          </Link>
-        </p>
+      </div>
+      <div className="border-t border-border bg-muted/50">
+        <div className="mx-auto max-w-6xl px-4 py-4">
+          <div className="flex flex-col gap-3 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+            <p className="shrink-0 break-words">
+              {t('footerCopyright', { year: String(currentYear) })}
+            </p>
+            <div className="shrink-0 sm:ml-auto">
+              <LanguageToggle />
+            </div>
+          </div>
+        </div>
       </div>
     </footer>
   );

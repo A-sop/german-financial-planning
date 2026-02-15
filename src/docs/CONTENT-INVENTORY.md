@@ -57,7 +57,7 @@ Content to reuse or reference when building the new site.
 
 | Purpose | URL |
 |---------|-----|
-| Booking / meeting | https://lp.germanfinancialplanning.de/nextmeeting/ |
+| Booking / meeting | /book (in-app: choose Online/Teams, at home NRW-RP, or office Cologne; mailto per option) |
 | German Financial Planning | https://www.germanfinancialplanning.de/ |
 | WhatsApp (German Financial Planning business) | https://api.whatsapp.com/send?phone=49022195491545&text=Hi+there+Logan!+I+saw+your+website+and+thought+I'd+introduce+myself+and+see+if+you+can+help |
 | German-speaking clients | https://www.allfinanz.ag/logan.williams/index.html |

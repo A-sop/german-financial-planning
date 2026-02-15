@@ -1,0 +1,30 @@
+# Canonical (Allfinanz) German content
+
+When German content is taken from the canonical Allfinanz site (https://www.allfinanz.ag/logan.williams/), follow these rules so the GFP site does not compete with the source in search and stays compliant.
+
+**When this applies:** Initial phase when bringing over German content from Allfinanz, and for blog posts (Finanztipps) that are sourced from the canonical. Not for all German content indefinitely.
+
+## SEO: Mark content as sourced
+
+- **Canonical URL:** On any page that republishes German content from the canonical, set the HTML canonical to the **source** URL, not the GFP URL.
+  - In Next.js: in `metadata` or `generateMetadata`, set `alternates.canonical` to the full Allfinanz URL for that page/article.
+- **Structured data (optional):** For articles, in JSON-LD include the source, e.g. `isBasedOn: { "@type": "CreativeWork", url: "https://www.allfinanz.ag/..." }` or a `citation` property pointing to the source URL.
+
+## Content: Truncate and link to source
+
+- **Heavily truncate:** On GFP, show only a short summary or excerpt (e.g. 1–3 sentences or a single paragraph). Do not republish the full article body.
+- **Link to source:** Always provide a clear, prominent link to the full article/page on the canonical site (e.g. "Weiterlesen auf Allfinanz" / "Read full article at source") using the exact source URL. Use `target="_blank"` and `rel="noopener noreferrer"`.
+
+## Drip-feed and timeless posts
+
+- **Drip-feed:** Publish at most one post per category per day (Vorsorge, Finanzen) until the site is caught up.
+- **Timeless only:** Use only evergreen posts. Exclude year-specific posts (e.g. "Änderungen 2026", "Rentenerhöhung 2025"); compile those into a single "What's changing" article with latest at top and "Last updated DD/MM/YYYY".
+
+## How to add a canonical post (Finanztipps)
+
+- **Location:** One Markdown file per post in `content/insights/`. Filename = URL slug (e.g. `altersvorsorge-basics.md` → `/financial-tips/retirement/altersvorsorge-basics`).
+- **Required frontmatter:** `title`, `date` (YYYY-MM-DD), `excerpt`, `topic`, and **`canonicalSource`** (full URL to the source article on Allfinanz).
+- **Draft:** Optional `draft: true` excludes the post from hub, category lists, and sitemap in production; the post remains viewable by direct URL. Use for work-in-progress; remove or set `draft: false` when publishing.
+- **Topic values:** Use `life-in-germany` or `vorsorge` for Retirement; use `personal-finance` or `finanzen` for Finances. These map to the English URL segments `retirement` and `finances`.
+- **Canonical behaviour:** When `canonicalSource` is set, the GFP page behaviour is locale-dependent. **DE:** only the excerpt and a prominent "Weiterlesen auf Allfinanz" link (truncate). **EN:** full body is shown with an italic note at the top: "This article was first published on [Allfinanz](url)." The HTML canonical and JSON-LD `isBasedOn` point to the source URL in both cases.
+- **Body:** For canonical posts the body is shown in full only in the English view; in the German view only the excerpt is shown. For non-canonical (own) posts, the body is rendered in full for both locales.

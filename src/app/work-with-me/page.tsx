@@ -1,8 +1,26 @@
 import Link from 'next/link';
 
-const BOOKING_URL = 'https://lp.germanfinancialplanning.de/nextmeeting/';
 const WHATSAPP_URL =
   'https://api.whatsapp.com/send?phone=49022195491545&text=Hi+there+Logan!+I+saw+your+website+and+thought+I%27d+introduce+myself+and+see+if+you+can+help';
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.germanfinancialplanning.de';
+
+const professionalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'German Financial Planning',
+  url: `${siteUrl}/work-with-me`,
+  description:
+    'Financial planning for expats in Germany. Health insurance, pensions, and clarity on how things work here.',
+  provider: {
+    '@type': 'Person',
+    name: 'Logan D. Williams',
+    jobTitle: 'Financial Adviser',
+    url: siteUrl,
+  },
+  areaServed: { '@type': 'Country', name: 'Germany' },
+};
 
 export const metadata = {
   title: 'Work With Me',
@@ -13,6 +31,12 @@ export const metadata = {
 export default function WorkWithMePage() {
   return (
     <main className="mx-auto max-w-3xl px-4 py-12">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(professionalServiceSchema),
+        }}
+      />
       <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
         Work With Me
       </h1>
@@ -40,14 +64,12 @@ export default function WorkWithMePage() {
       </div>
 
       <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-        <a
-          href={BOOKING_URL}
-          target="_blank"
-          rel="noopener noreferrer"
+        <Link
+          href="/book"
           className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
         >
           Book a chat
-        </a>
+        </Link>
         <a
           href={WHATSAPP_URL}
           target="_blank"

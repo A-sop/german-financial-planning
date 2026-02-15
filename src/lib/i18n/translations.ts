@@ -1,9 +1,10 @@
 export type Locale = 'en' | 'de';
 
-export const defaultLocale: Locale = 'en';
+export const defaultLocale: Locale = 'de';
 export const supportedLocales: Locale[] = ['en', 'de'];
 
 export const translations = {
+  // English: EU/British spelling and style. See src/docs/EU-ENGLISH-STYLE.md
   en: {
     // Home
     comingSoon: 'Coming Soon',
@@ -138,6 +139,138 @@ export const translations = {
     priorityHigh: 'High',
     priorityUrgent: 'Urgent',
     sops: 'SOPs',
+    // GFP — Nav
+    navCareer: 'Career',
+    navReviews: 'Testimonials',
+    navAdvice: 'Advice',
+    navAbout: 'About',
+    navCta: 'Get advice now',
+    navFinanztipps: 'Financial tips',
+    // GFP — Finanztipps (hub & categories)
+    finanztippsHubTitle: 'Financial tips for you',
+    finanztippsHubIntro:
+      'Stay informed on topics around protection, retirement and wealth building.',
+    finanztippsTopicVorsorge: 'Retirement',
+    finanztippsTopicFinanzen: 'Finances',
+    finanztippsAlleAktuellen: 'All current topics',
+    finanztippsWeiterlesen: 'Read more',
+    finanztippsAllInCategory: 'All posts in this category',
+    finanztippsBackHub: '← Financial tips',
+    finanztippsReadAtSource: 'Read full article at source',
+    finanztippsFirstPublishedOn: 'This article was first published on',
+    finanztippsSourceLinkText: 'Allfinanz',
+    // GFP — Footer
+    footerImprint: 'Imprint',
+    footerPrivacy: 'Privacy',
+    footerContact: 'Contact',
+    footerCopyright: '© {year} Logan D. Williams – Financial Adviser. Made with 🥨 in Cologne.',
+    // GFP — Home
+    homeHeroStars: '5 out of 5 stars · 13 reviews',
+    homeHeroTagline: 'Your financial adviser in Cologne',
+    homeHeroIntro:
+      'With me you have a coach for all financial questions at your side. No matter how much you earn: you benefit from a holistic concept for your finances.',
+    homeCtaBook: 'Request appointment',
+    homeCtaCall: 'Call',
+    homeCtaContact: 'Contact',
+    homeFaqLink: 'Frequently asked questions',
+    homeLearnTitle: 'Get to know me',
+    homeLearnIntro:
+      'With me you have a coach for all financial questions at your side. No matter how much you earn: you benefit from a holistic concept for your finances and save real money. Try it!',
+    homeLearnYears: 'Years old',
+    homeLearnClients: 'satisfied clients',
+    homeLearnCommitment: 'Committed to the highest advisory quality as a member.',
+    homeLearnMore: 'Learn more about me',
+    aboutBackToHome: '← Back to home',
+    aboutProfileAllfinanz: 'Full profile on Allfinanz (German)',
+    adviceCoachingAllfinanz: 'More on financial coaching (Allfinanz, German)',
+    homeStepsTitle: 'In 5 steps to your financial goals',
+    homeStepsSubtitle: 'My advisory offer – structured and transparent.',
+    homeStepLabel: 'Step',
+    homeStepsMore: 'Learn more about financial coaching',
+    homeValueTitle: 'Your advantages at a glance',
+    homeValueSubtitle: 'Individual financial coaching.',
+    homeValueCta: 'Get in touch now',
+    homeLifeTitle: 'One life – many possibilities',
+    homeLifeSubtitle: 'What life dream are you pursuing?',
+    homeLifePara1:
+      'Sometimes it is just one decision that leads to a completely different life. Especially in decisive moments it is important to have someone at your side you can trust. Someone who coaches. And who helps you get the best out of your life.',
+    homeLifePara2:
+      'However you want to live your life: I help you make the right financial decisions.',
+    homeLifeCta: 'Book an appointment now',
+    homeTestimonialsTitle: 'What my clients say',
+    homeTestimonialsIntro:
+      'Experiences & testimonials – from these you can get an idea of how satisfied clients are with my advice.',
+    homeTestimonialsAll: 'View all testimonials',
+    homeFaqTitle: 'Frequently asked questions about my advice',
+    homeFaqSubtitle: 'FAQ & guide',
+    homeContactTitle: 'My contact details',
+    homeContactBook: 'Book appointment',
+    homeContactPhone: 'Phone',
+    homeContactMobile: 'Mobile',
+    homeContactEmail: 'Email',
+    // GFP — Home: 5 steps (EN)
+    homeStep1:
+      'Assessment of your current situation and discussion of your short- and long-term goals',
+    homeStep2:
+      'Evaluation of the information and creation of your individual financial and retirement plan',
+    homeStep3:
+      'Presentation and discussion of your plan in a personal meeting',
+    homeStep4: 'Implementation of your personal savings and retirement goals',
+    homeStep5:
+      'Ongoing support for all questions about your finances and retirement',
+    // GFP — Home: value props (EN)
+    homeValue1Title: 'Your wishes & goals in focus',
+    homeValue1Desc:
+      "It's about you! As your financial coach I take the time to get to know your situation and understand what you want to achieve. And then to make possible together what's possible.",
+    homeValue2Title: 'Professional concept advice',
+    homeValue2Desc:
+      'Saving, investing, insurance, retirement – I help you keep track of all financial topics and create a personalised, cross-sector concept for your financial success.',
+    homeValue3Title: 'One point of contact for everything',
+    homeValue3Desc:
+      'As your personal financial coach I take care of everything important for you, advise you when something in your life changes, and help you turn your savings and retirement goals into action.',
+    // GFP — Home: FAQ (EN)
+    homeFaq1Q: 'How does an advisory session work?',
+    homeFaq1A:
+      'In a first session we capture your financial situation – including your income and expenses and your current coverage. We also talk about your goals and wishes. I then develop a tailored concept for your protection, retirement and wealth building. In a follow-up session I present the right products to help you reach your goals.',
+    homeFaq2Q: 'What does financial coaching cost?',
+    homeFaq2A:
+      'There are no direct costs for you as part of financial coaching. If you sign contracts, a commission is payable; you do not pay this as the customer – it is included in the product prices. You do not have to pay for ongoing service around the products and financial planning either.',
+    homeFaq3Q: 'How long does a session take and where is it held?',
+    homeFaq3A:
+      'You should allow about 90 minutes each for initial and follow-up sessions. Sessions can take place at your home, at the office, or online.',
+    homeFaq4Q: "I don't have much money – why do I need a financial coach?",
+    homeFaq4A:
+      'Simple: so that can change! As a financial coach I help you get a clear view of your income and expenses and spot potential savings or optimisations – tailored to your situation and wishes.',
+    homeFaq5Q: 'Do I need to prepare anything for the session?',
+    homeFaq5A:
+      'Ideally have your current payslip and an overview of your current insurance and other financial products to hand. Everything else will come out in the conversation.',
+    // GFP — Testimonials (EN)
+    homeT1Title: 'My financial goals within reach!',
+    homeT1Quote:
+      'Logan helped me bring my financial goals within reach. Thanks to his help I feel secure and motivated.',
+    homeT2Title: 'Logan Williams – The partner for financial freedom!',
+    homeT2Quote:
+      'Mr Williams showed me how to achieve financial freedom. His advice was exactly what I needed.',
+    homeT3Title: 'Professional advice and friendly service',
+    homeT3Quote:
+      'Logan was professional with every step in the consultation process and went above and beyond to present me with the best offer for my circumstances. If you have questions – Logan is your man!',
+    homeT4Title: 'Logan Williams is unbeatable!',
+    homeT4Quote:
+      'Logan Williams was fantastic! Very professional and friendly, he helped me with every aspect of my financial needs. Can recommend 100%.',
+    // GFP — Book / meeting request
+    bookTitle: 'Request an appointment',
+    bookIntro: 'How would you like to meet? Choose an option below.',
+    bookOptionTeams: 'Online via Teams',
+    bookOptionTeamsDesc: 'Video call from anywhere. We send you a Teams link before the meeting.',
+    bookOptionHome: 'In person at your home',
+    bookOptionHomeDesc: 'I come to you in North Rhine–Westphalia (NRW) or Rhineland-Palatinate (RP).',
+    bookOptionOffice: 'At my office in Cologne',
+    bookOptionOfficeDesc: 'Hohenzollernring 52, 50672 Köln. Easy to reach by public transport.',
+    bookCtaRequest: 'Request this option',
+    bookSubjectTeams: 'Appointment request: Online (Teams)',
+    bookSubjectHome: 'Appointment request: At my home (NRW/RP)',
+    bookSubjectOffice: 'Appointment request: Office Cologne',
+    bookBackHome: 'Back to home',
   },
   de: {
     comingSoon: 'Demnächst',
@@ -269,6 +402,138 @@ export const translations = {
     priorityHigh: 'Hoch',
     priorityUrgent: 'Dringend',
     sops: 'SOPs',
+    // GFP — Nav
+    navCareer: 'Karriere',
+    navReviews: 'Bewertungen',
+    navAdvice: 'Beratung',
+    navAbout: 'Über uns',
+    navCta: 'Jetzt beraten lassen',
+    navFinanztipps: 'Finanztipps',
+    // GFP — Finanztipps (Hub & Kategorien)
+    finanztippsHubTitle: 'Wichtige Finanztipps für Sie',
+    finanztippsHubIntro:
+      'Mit unseren Finanztipps sind Sie informiert über aktuelle Themen rund um Absicherung, Altersvorsorge und Vermögensaufbau.',
+    finanztippsTopicVorsorge: 'Vorsorge',
+    finanztippsTopicFinanzen: 'Finanzen',
+    finanztippsAlleAktuellen: 'Alle aktuellen Themen',
+    finanztippsWeiterlesen: 'Weiterlesen',
+    finanztippsAllInCategory: 'Alle Beiträge der Rubrik',
+    finanztippsBackHub: '← Finanztipps',
+    finanztippsReadAtSource: 'Weiterlesen auf Allfinanz',
+    finanztippsFirstPublishedOn: 'Dieser Artikel wurde zuerst veröffentlicht auf',
+    finanztippsSourceLinkText: 'Allfinanz',
+    // GFP — Footer
+    footerImprint: 'Impressum',
+    footerPrivacy: 'Datenschutz',
+    footerContact: 'Kontakt',
+    footerCopyright: '© {year} Logan D. Williams – Vermögensberater. Mit 🥨 in Köln gemacht.',
+    // GFP — Home
+    homeHeroStars: '5 von 5 Sternen · 13 Bewertungen',
+    homeHeroTagline: 'Ihr Vermögensberater aus Köln',
+    homeHeroIntro:
+      'Mit mir haben Sie einen Coach für alle Finanzfragen an Ihrer Seite. Ganz gleich, wie viel Sie verdienen: Sie profitieren von einem ganzheitlichen Konzept für Ihre Finanzen.',
+    homeCtaBook: 'Termin anfragen',
+    homeCtaCall: 'Anrufen',
+    homeCtaContact: 'Kontakt',
+    homeFaqLink: 'Häufig gestellte Fragen',
+    homeLearnTitle: 'Lernen Sie mich kennen',
+    homeLearnIntro:
+      'Mit mir haben Sie einen Coach für alle Finanzfragen an Ihrer Seite. Ganz gleich, wie viel Sie verdienen: Sie profitieren von einem ganzheitlichen Konzept für Ihre Finanzen und sparen dabei bares Geld. Probieren Sie es aus!',
+    homeLearnYears: 'Jahre jung',
+    homeLearnClients: 'zufriedene Kunden',
+    homeLearnCommitment: 'Als Mitglied zu höchster Beratungsqualität verpflichtet.',
+    homeLearnMore: 'Mehr über mich erfahren',
+    aboutBackToHome: '← Zurück zur Startseite',
+    aboutProfileAllfinanz: 'Vollständiges Profil auf Allfinanz',
+    adviceCoachingAllfinanz: 'Mehr zum Finanzcoaching (Allfinanz)',
+    homeStepsTitle: 'In 5 Schritten zu Ihren finanziellen Zielen',
+    homeStepsSubtitle: 'Mein Beratungsangebot – strukturiert und transparent.',
+    homeStepLabel: 'Schritt',
+    homeStepsMore: 'Mehr über Finanzcoaching erfahren',
+    homeValueTitle: 'Ihre Vorteile auf einen Blick',
+    homeValueSubtitle: 'Individuelles Finanzcoaching.',
+    homeValueCta: 'Jetzt Kontakt aufnehmen',
+    homeLifeTitle: 'Ein Leben – viele Möglichkeiten',
+    homeLifeSubtitle: 'Welchen Lebenstraum verfolgen Sie?',
+    homeLifePara1:
+      'Manchmal ist es nur eine einzige Entscheidung, die zu einem ganz anderen Leben führt. Gerade in den entscheidenden Momenten ist es wichtig, jemanden an seiner Seite zu haben, dem man vertrauen kann. Der einen coacht. Und der einem hilft, das Beste aus seinem Leben rauszuholen.',
+    homeLifePara2:
+      'Wie auch immer Sie Ihr Leben leben wollen: Ich helfe Ihnen, die richtigen finanziellen Entscheidungen zu treffen.',
+    homeLifeCta: 'Jetzt Termin vereinbaren',
+    homeTestimonialsTitle: 'Das sagen meine Kunden',
+    homeTestimonialsIntro:
+      'Erfahrungen & Bewertungen – anhand von Bewertungen können Sie sich ein Bild davon machen, wie zufrieden Kundinnen und Kunden mit meiner Beratung sind.',
+    homeTestimonialsAll: 'Alle Bewertungen ansehen',
+    homeFaqTitle: 'Häufig gestellte Fragen zu meiner Beratung',
+    homeFaqSubtitle: 'FAQ & Ratgeber',
+    homeContactTitle: 'Meine Kontaktdaten',
+    homeContactBook: 'Termin vereinbaren',
+    homeContactPhone: 'Telefon',
+    homeContactMobile: 'Mobil',
+    homeContactEmail: 'E-Mail',
+    // GFP — Home: 5 Schritte (DE)
+    homeStep1:
+      'Ermittlung Ihrer Ist-Situation und Besprechung Ihrer kurz- und langfristigen Ziele',
+    homeStep2:
+      'Auswertung der Infos und Erstellung Ihres individuellen Finanz- und Vorsorgekonzepts',
+    homeStep3:
+      'Vorstellung und Besprechung Ihres Konzepts in einem persönlichen Gespräch',
+    homeStep4: 'Umsetzung Ihrer persönlichen Spar- und Vorsorgeziele',
+    homeStep5:
+      'Dauerhafte Begleitung bei allen Fragen rund um Ihre Finanzen und Vorsorge',
+    // GFP — Home: value props (DE)
+    homeValue1Title: 'Ihre Wünsche & Ziele im Fokus',
+    homeValue1Desc:
+      'Es geht um Sie! Als Ihr Finanzcoach nehme ich mir Zeit, Ihre Situation kennenzulernen und zu verstehen, was Sie erreichen möchten. Und dann mit Ihnen gemeinsam das möglich zu machen, was möglich ist.',
+    homeValue2Title: 'Professionelle Konzeptberatung',
+    homeValue2Desc:
+      'Sparen, Geldanlage, Versicherungen, Vorsorge – ich helfe Ihnen, bei allen Finanzthemen den Überblick zu behalten und erarbeite für Sie ein personalisiertes, branchenübergreifendes Konzept für Ihren finanziellen Erfolg.',
+    homeValue3Title: 'Ein Ansprechpartner für alles',
+    homeValue3Desc:
+      'Als Ihr persönlicher Finanzcoach kümmere ich mich für Sie um alles Wichtige, berate Sie, wenn sich etwas in Ihrem Leben verändert und helfe Ihnen, Ihre Spar- und Vorsorgeziele in die Tat umzusetzen.',
+    // GFP — Home: FAQ (DE)
+    homeFaq1Q: 'Wie läuft ein Beratungstermin ab?',
+    homeFaq1A:
+      'In einem ersten Termin erfassen wir Ihre finanzielle Lage – darunter auch Ihre Einnahmen und Ausgaben sowie Ihre aktuelle Absicherung. Wir sprechen außerdem über Ihre Ziele und Wünsche. Daraufhin entwickle ich ein passgenaues Konzept für Ihre Absicherung, Altersvorsorge und Ihren Vermögensaufbau. In einem Folgetermin stelle ich Ihnen die richtigen Produkte vor, um Ihre Ziele erreichbar werden zu lassen.',
+    homeFaq2Q: 'Was kostet ein Finanzcoaching?',
+    homeFaq2A:
+      'Es entstehen für Sie im Rahmen eines Finanzcoachings keine direkten Kosten. Sollten Sie Verträge abschließen, wird eine Provision fällig, die Sie als Kunde nicht direkt bezahlen – sie ist in den Preisen der Produkte enthalten. Den fortlaufenden Service rund um die Produkte und die Finanzplanung müssen Sie ebenfalls nicht extra bezahlen.',
+    homeFaq3Q: 'Wie lange dauert eine Beratung und wo findet sie statt?',
+    homeFaq3A:
+      'Für Beratungs- und Folgetermine sollten Sie sich jeweils ca. 90 Minuten Zeit nehmen. Die Termine können sowohl bei Ihnen zuhause als auch im Büro vor Ort oder ggf. online stattfinden.',
+    homeFaq4Q: 'Ich habe nicht viel Geld – wieso brauche ich dann einen Finanzcoach?',
+    homeFaq4A:
+      'Ganz einfach: Damit sich das ändert! Als Finanzcoach unterstütze ich Sie dabei, einen genauen Überblick über Ihre Einnahmen und Ausgaben zu erhalten und Einspar- oder Optimierungspotenziale zu erkennen – individuell auf Ihre Möglichkeiten und Wünsche abgestimmt.',
+    homeFaq5Q: 'Muss ich etwas für den Beratungstermin vorbereiten?',
+    homeFaq5A:
+      'Im Idealfall haben Sie Ihre aktuelle Gehaltsabrechnung sowie eine Übersicht über Ihre aktuellen Versicherungsverträge und weitere Finanz- und Vorsorgeprodukte griffbereit. Alles Weitere ergibt sich im Gespräch.',
+    // GFP — Testimonials (DE)
+    homeT1Title: 'Meine finanziellen Ziele in Reichweite!',
+    homeT1Quote:
+      'Logan hat mir geholfen, meine finanziellen Ziele in Reichweite zu bringen. Dank seiner Hilfe fühle ich mich sicher und motiviert.',
+    homeT2Title: 'Logan Williams – Der Partner für finanzielle Freiheit!',
+    homeT2Quote:
+      'Mr. Williams hat mir gezeigt, wie ich finanzielle Freiheit erreichen kann. Seine Beratung ist genau das, was ich gebraucht habe.',
+    homeT3Title: 'Professional advice and friendly service',
+    homeT3Quote:
+      'Logan was professional with every step in the consultation process and went above and beyond to present me with the best offer for my circumstances. If you have questions – Logan is your man!',
+    homeT4Title: 'Logan Williams ist unschlagbar!',
+    homeT4Quote:
+      'Logan Williams war fantastisch! Super professionell und auch freundlich, er hat mir bei allen Aspekten meiner finanziellen Bedürfnisse geholfen. Kann man zu 100% weiterempfehlen.',
+    // GFP — Book / Termin anfragen
+    bookTitle: 'Termin anfragen',
+    bookIntro: 'Wie möchten Sie sich treffen? Wählen Sie eine Option.',
+    bookOptionTeams: 'Online per Teams',
+    bookOptionTeamsDesc: 'Videocall von überall. Sie erhalten vor dem Termin einen Teams-Link.',
+    bookOptionHome: 'Bei Ihnen zu Hause',
+    bookOptionHomeDesc: 'Ich komme zu Ihnen in NRW oder Rheinland-Pfalz.',
+    bookOptionOffice: 'In meinem Büro in Köln',
+    bookOptionOfficeDesc: 'Hohenzollernring 52, 50672 Köln. Gut mit ÖPNV erreichbar.',
+    bookCtaRequest: 'Diese Option anfragen',
+    bookSubjectTeams: 'Terminanfrage: Online (Teams)',
+    bookSubjectHome: 'Terminanfrage: Bei mir zu Hause (NRW/RP)',
+    bookSubjectOffice: 'Terminanfrage: Büro Köln',
+    bookBackHome: 'Zur Startseite',
   },
 } as const satisfies Record<Locale, Record<string, string | Record<string, string>>>;
 

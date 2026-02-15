@@ -1,0 +1,23 @@
+[
+  {
+    "title": "Vorsorge und Absicherung – der erste Überblick",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/",
+    "suggestedSlug": "welcome-post",
+    "status": "Done"
+  },
+  {
+    "title": "(Placeholder: next canonical post)",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/...",
+    "suggestedSlug": "next-retirement-post",
+    "status": "Not started"
+  },
+  {
+    "title": "(Placeholder: finances canonical post)",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/...",
+    "suggestedSlug": "next-finances-post",
+    "status": "Not started"
+  }
+]

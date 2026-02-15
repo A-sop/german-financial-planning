@@ -26,6 +26,12 @@ export function LocaleProvider({ children }: { children: ReactNode }) {
     setMounted(true);
   }, []);
 
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+      document.documentElement.lang = locale === 'de' ? 'de' : 'en';
+    }
+  }, [locale]);
+
   const setLocale = useCallback((newLocale: Locale) => {
     setLocaleState(newLocale);
     setStoredLocale(newLocale);

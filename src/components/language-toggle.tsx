@@ -4,9 +4,9 @@ import { useLocale } from '@/components/providers/locale-provider';
 import { supportedLocales, type Locale } from '@/lib/i18n';
 import { cn } from '@/lib/utils';
 
-const labels: Record<Locale, string> = {
-  en: 'EN',
-  de: 'DE',
+const LABELS: Record<Locale, string> = {
+  en: 'English',
+  de: 'Deutsch',
 };
 
 export function LanguageToggle() {
@@ -24,15 +24,15 @@ export function LanguageToggle() {
           type="button"
           onClick={() => setLocale(loc)}
           className={cn(
-            'rounded px-2.5 py-1 text-sm font-medium transition-colors',
+            'rounded px-2.5 py-1.5 text-sm font-medium transition-colors',
             locale === loc
-              ? 'bg-background text-foreground shadow-sm'
+              ? 'bg-background text-foreground shadow-sm ring-1 ring-border'
               : 'text-muted-foreground hover:text-foreground'
           )}
           aria-pressed={locale === loc}
-          aria-label={`Switch to ${loc === 'en' ? 'English' : 'Deutsch'}`}
+          aria-label={`Switch to ${LABELS[loc]}`}
         >
-          {labels[loc]}
+          {LABELS[loc]}
         </button>
       ))}
     </div>

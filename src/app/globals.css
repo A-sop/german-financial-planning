@@ -1,27 +1,27 @@
 @import 'tailwindcss';
 
-/* Refined palette — soft stone, calm & professional */
+/* Allfinanz-style corporate palette — professional financial advice, authority */
 :root {
-  --background: 40 20% 98%;
-  --foreground: 30 10% 18%;
+  --background: 0 0% 100%;
+  --foreground: 220 20% 18%;
   --card: 0 0% 100%;
-  --card-foreground: 30 10% 18%;
+  --card-foreground: 220 20% 18%;
   --popover: 0 0% 100%;
-  --popover-foreground: 30 10% 18%;
-  --primary: 220 25% 35%;
+  --popover-foreground: 220 20% 18%;
+  --primary: 218 45% 28%;
   --primary-foreground: 0 0% 100%;
-  --secondary: 40 15% 94%;
-  --secondary-foreground: 30 10% 25%;
-  --muted: 40 15% 96%;
-  --muted-foreground: 30 8% 45%;
-  --accent: 40 18% 93%;
-  --accent-foreground: 220 25% 30%;
+  --secondary: 220 14% 96%;
+  --secondary-foreground: 220 20% 25%;
+  --muted: 220 12% 97%;
+  --muted-foreground: 220 10% 45%;
+  --accent: 220 14% 95%;
+  --accent-foreground: 218 45% 28%;
   --destructive: 0 55% 45%;
   --destructive-foreground: 0 0% 100%;
-  --border: 40 12% 90%;
-  --input: 40 12% 90%;
-  --ring: 220 25% 40%;
-  --chart-1: 220 35% 45%;
+  --border: 220 12% 90%;
+  --input: 220 12% 90%;
+  --ring: 218 45% 35%;
+  --chart-1: 218 45% 45%;
   --chart-2: 180 25% 40%;
   --chart-3: 30 30% 50%;
   --chart-4: 260 20% 55%;
@@ -30,26 +30,26 @@
 }
 
 .dark {
-  --background: 30 10% 9%;
-  --foreground: 40 15% 93%;
-  --card: 30 10% 12%;
-  --card-foreground: 40 15% 93%;
-  --popover: 30 10% 12%;
-  --popover-foreground: 40 15% 93%;
-  --primary: 220 30% 65%;
-  --primary-foreground: 30 10% 8%;
-  --secondary: 30 12% 18%;
-  --secondary-foreground: 40 15% 90%;
-  --muted: 30 12% 16%;
-  --muted-foreground: 40 10% 58%;
-  --accent: 30 15% 20%;
-  --accent-foreground: 220 30% 75%;
+  --background: 220 18% 10%;
+  --foreground: 220 10% 95%;
+  --card: 220 18% 13%;
+  --card-foreground: 220 10% 95%;
+  --popover: 220 18% 13%;
+  --popover-foreground: 220 10% 95%;
+  --primary: 218 40% 55%;
+  --primary-foreground: 220 18% 8%;
+  --secondary: 220 16% 18%;
+  --secondary-foreground: 220 10% 90%;
+  --muted: 220 16% 16%;
+  --muted-foreground: 220 10% 58%;
+  --accent: 220 18% 20%;
+  --accent-foreground: 218 40% 75%;
   --destructive: 0 50% 45%;
   --destructive-foreground: 0 0% 100%;
-  --border: 30 12% 22%;
-  --input: 30 12% 22%;
-  --ring: 220 30% 55%;
-  --chart-1: 220 40% 60%;
+  --border: 220 16% 22%;
+  --input: 220 16% 22%;
+  --ring: 218 40% 50%;
+  --chart-1: 218 45% 55%;
   --chart-2: 180 35% 55%;
   --chart-3: 30 35% 60%;
   --chart-4: 260 30% 60%;
@@ -84,6 +84,20 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
+}
+
+/* German: better wrapping and hyphenation for long compound words */
+[lang='de'] {
+  hyphens: auto;
+  -webkit-hyphens: auto;
+  -ms-hyphens: auto;
+}
+
+[lang='de'] p,
+[lang='de'] dd,
+[lang='de'] li {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 @keyframes gradient {

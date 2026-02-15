@@ -1,4 +1,4 @@
-# SEO Checklist — loganwilliams.com
+# SEO Checklist — German Financial Planning
 
 Technical and on-page SEO. Tick as implemented.
 
@@ -7,14 +7,14 @@ Technical and on-page SEO. Tick as implemented.
 ## Technical
 
 - [x] `robots.ts` — allow `/`, disallow `/workspace/`, `/api/`, `/private/`; sitemap URL
-- [x] `sitemap.ts` — homepage, insights index, pillar pages; add per-post URLs when blog exists
-- [ ] Root `metadata` — title template, default description, Open Graph base
-- [ ] Per-route `generateMetadata` — especially for insights
-- [ ] Canonical URLs — absolute, consistent
-- [ ] `lang` attribute on `<html>` — `en` or `en`/`de` if bilingual
-- [ ] Schema: Person (homepage)
-- [ ] Schema: BlogPosting (each post)
-- [ ] Schema: ProfessionalService (work-with-me)
+- [x] `sitemap.ts` — homepage, insights index, pillar pages, /book, /careers, per-post URLs
+- [x] Root `metadata` — title template, default description, `metadataBase`, Open Graph base
+- [x] Per-route `generateMetadata` — insights [slug]; book, careers, work-with-me, legal have metadata
+- [x] Canonical URLs — via `metadataBase` (NEXT_PUBLIC_SITE_URL); absolute, consistent
+- [x] `lang` attribute on `<html>` — set by LocaleProvider (`de` / `en`) for bilingual
+- [x] Schema: Person (layout — site-wide)
+- [x] Schema: BlogPosting (each insight post)
+- [x] Schema: ProfessionalService (work-with-me)
 
 ---
 

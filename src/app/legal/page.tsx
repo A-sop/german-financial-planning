@@ -51,9 +51,9 @@ export default function LegalPage() {
           <section>
             <h3 className="font-medium text-foreground mb-1">Logan D. Williams</h3>
             <p className="text-muted-foreground">
-              Zülpicher Wall 16
+              Hohenzollernring 52
               <br />
-              50674 Köln
+              50672 Köln
               <br />
               Telefon: +49 157 92373917
               <br />
