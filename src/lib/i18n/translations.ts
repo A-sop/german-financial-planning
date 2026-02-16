@@ -1,6 +1,6 @@
 export type Locale = 'en' | 'de';
 
-export const defaultLocale: Locale = 'de';
+export const defaultLocale: Locale = 'en';
 export const supportedLocales: Locale[] = ['en', 'de'];
 
 export const translations = {

@@ -6,14 +6,18 @@ import { useLocale } from '@/components/providers/locale-provider';
 export function CanonicalPostBody({
   excerpt,
   content,
+  contentEn,
   canonicalSource,
 }: {
   excerpt: string;
   content: string;
+  /** When set, EN view shows this full translation instead of the default content. */
+  contentEn?: string;
   canonicalSource: string;
 }) {
   const { t, locale } = useLocale();
   const isEnglish = locale === 'en';
+  const bodyToShow = isEnglish && contentEn ? contentEn : content;
 
   if (isEnglish) {
     return (
@@ -31,7 +35,7 @@ export function CanonicalPostBody({
           .
         </p>
         <div className="insight-content text-foreground [&_p]:mb-4 [&_p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1">
-          <ReactMarkdown>{content}</ReactMarkdown>
+          <ReactMarkdown>{bodyToShow}</ReactMarkdown>
         </div>
       </div>
     );

@@ -7,17 +7,381 @@
     "status": "Done"
   },
   {
-    "title": "(Placeholder: next canonical post)",
+    "title": "Allfinanz-Konzept: 5 gute Gründe für eine ganzheitliche Finanz- und Vorsorgeplanung",
     "topic": "retirement",
-    "sourceUrl": "https://www.allfinanz.ag/...",
-    "suggestedSlug": "next-retirement-post",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/allfinanz-konzept-5-gute-gruende.html",
+    "suggestedSlug": "allfinanz-konzept-5-gute-gruende",
     "status": "Not started"
   },
   {
-    "title": "(Placeholder: finances canonical post)",
+    "title": "Altersvorsorge mit System: So einfach geht's ab 20, 30, 40, 50",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/altersvorsorge-mit-system-ab-20-30-40-50.html",
+    "suggestedSlug": "altersvorsorge-mit-system-ab-20-30-40-50",
+    "status": "Not started"
+  },
+  {
+    "title": "Änderungen in 2026: Das sollten Versicherte wissen",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/aenderungen-2026-das-sollten-versicherte-wissen.html",
+    "suggestedSlug": "aenderungen-2026-das-sollten-versicherte-wissen",
+    "status": "Not started"
+  },
+  {
+    "title": "Den Nachwuchs richtig absichern",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/den-nachwuchs-richtig-absichern.html",
+    "suggestedSlug": "den-nachwuchs-richtig-absichern",
+    "status": "Not started"
+  },
+  {
+    "title": "Früher raus aus dem Job? Mit cleverer Finanzstrategie und Altersteilzeit",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/frueher-raus-aus-dem-job-mit-cleverer-finanzstrategie-und-altersteilzeit.html",
+    "suggestedSlug": "frueher-raus-aus-dem-job-mit-cleverer-finanzstrategie-und-altersteilzeit",
+    "status": "Not started"
+  },
+  {
+    "title": "5 Tipps: Check-up von Finanzen und Verträgen zum Jahreswechsel 2026",
     "topic": "finances",
-    "sourceUrl": "https://www.allfinanz.ag/...",
-    "suggestedSlug": "next-finances-post",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/5-tipps-finanz-check-up-zum-jahreswechsel.html",
+    "suggestedSlug": "5-tipps-finanz-check-up-zum-jahreswechsel",
+    "status": "Not started"
+  },
+  {
+    "title": "Auf einen Blick: wichtige finanzielle Änderungen in 2026",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/finanzielle-aenderungen-2026.html",
+    "suggestedSlug": "finanzielle-aenderungen-2026",
+    "status": "Not started"
+  },
+  {
+    "title": "Aus für Maestro-Funktion: Was sich jetzt für Bankkunden ändert",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/aus-fuer-maestro-funktion-was-passiert-mit-der-girocard.html",
+    "suggestedSlug": "aus-fuer-maestro-funktion-was-passiert-mit-der-girocard",
+    "status": "Not started"
+  },
+  {
+    "title": "Die Formel für finanzielles Glück",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/die-formel-fuer-finanzielles-glueck.html",
+    "suggestedSlug": "die-formel-fuer-finanzielles-glueck",
+    "status": "Not started"
+  },
+  {
+    "title": "Durch das Bündeln bestehender Kredite finanziellen Freiraum schaffen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/durch-das-buendeln-bestehender-kredite-finanziellen-freiraum-schaffen.html",
+    "suggestedSlug": "durch-das-buendeln-bestehender-kredite-finanziellen-freiraum-schaffen",
+    "status": "Not started"
+  },
+  {
+    "title": "Gebäudeschaden durch Unwetter: Wissen, was zu tun ist!",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/gebaeudeschaden-durch-unwetter-wissen-was-zu-tun-ist.html",
+    "suggestedSlug": "gebaeudeschaden-durch-unwetter-wissen-was-zu-tun-ist",
+    "status": "Not started"
+  },
+  {
+    "title": "Gehaltserhöhung – Anpassen der Versicherungsbeiträge ist wichtig",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/gehaltserhoehung-anpassen-der-versicherungsbeitraege-ist-wichtig.html",
+    "suggestedSlug": "gehaltserhoehung-anpassen-der-versicherungsbeitraege-ist-wichtig",
+    "status": "Not started"
+  },
+  {
+    "title": "Gesetzliche Krankenkassen erhöhen Zusatzbeitrag 2026: Das ist jetzt wichtig",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/krankenkassen-erhoehen-zusatzbeitrag.html",
+    "suggestedSlug": "krankenkassen-erhoehen-zusatzbeitrag",
+    "status": "Not started"
+  },
+  {
+    "title": "Gut beraten in jeder Lebensphase",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/gut-beraten-in-jeder-lebensphase.html",
+    "suggestedSlug": "gut-beraten-in-jeder-lebensphase",
+    "status": "Not started"
+  },
+  {
+    "title": "Jahresende: Was ist jetzt noch zu tun?",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/jahresende-was-ist-jetzt-noch-zu-tun.html",
+    "suggestedSlug": "jahresende-was-ist-jetzt-noch-zu-tun",
+    "status": "Not started"
+  },
+  {
+    "title": "Energetisch sanieren: Checkliste + Finanzierungswege",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/energetisch-sanieren-checkliste-finanzierungswege.html",
+    "suggestedSlug": "energetisch-sanieren-checkliste-finanzierungswege",
+    "status": "Not started"
+  },
+  {
+    "title": "Erfolgsfaktoren für den strategischen und langfristigen Vermögensaufbau",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/erfolgsfaktoren-fuer-strategieschen-langfristigen-vermoegensaufbau.html",
+    "suggestedSlug": "erfolgsfaktoren-fuer-strategieschen-langfristigen-vermoegensaufbau",
+    "status": "Not started"
+  },
+  {
+    "title": "EZB Zinssenkungen – was bedeutet das für mein Geld?",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/ezb-zinssenkung-was-bedeutet-das-fuer-mein-geld.html",
+    "suggestedSlug": "ezb-zinssenkung-was-bedeutet-das-fuer-mein-geld",
+    "status": "Not started"
+  },
+  {
+    "title": "Geld in der Partnerschaft: So erreichen Paare ihre Ziele gemeinsam",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/geld-in-der-partnerschaft.html",
+    "suggestedSlug": "geld-in-der-partnerschaft",
+    "status": "Not started"
+  },
+  {
+    "title": "Geld und Strom sparen: Tipps für den Alltag",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/geld-und-strom-sparen-tipps-fuer-den-alltag.html",
+    "suggestedSlug": "geld-und-strom-sparen-tipps-fuer-den-alltag",
+    "status": "Not started"
+  },
+  {
+    "title": "Kindergeld 2023: So können Familien von der Erhöhung profitieren",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/kindergeld-2023-so-koennen-familien-von-der-erhoehunung-profitieren.html",
+    "suggestedSlug": "kindergeld-2023-so-koennen-familien-von-der-erhoehunung-profitieren",
+    "status": "Not started"
+  },
+  {
+    "title": "Kinderkrankengeld 2024: Das ändert sich für Beschäftigte, wenn das Kind krank ist",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/kinderkrankengeld-2024-das-aendert-sich-fuer-beschaeftigte-wenn-das-kind-krank-ist.html",
+    "suggestedSlug": "kinderkrankengeld-2024-das-aendert-sich-fuer-beschaeftigte-wenn-das-kind-krank-ist",
+    "status": "Not started"
+  },
+  {
+    "title": "Noch passend abgesichert? Die Checkliste zum Jahresende für Ihre Versicherungen",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/noch-passend-abgesichert-die-checkliste-zum-jahresende-fuer-ihre-versicherungen.html",
+    "suggestedSlug": "noch-passend-abgesichert-die-checkliste-zum-jahresende-fuer-ihre-versicherungen",
+    "status": "Not started"
+  },
+  {
+    "title": "Plötzlich pflegebedürftig: Lieber heute schon an morgen denken",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/ploetzlich-pflegebeduerftig-lieber-heute-schon-an-morgen-denken.html",
+    "suggestedSlug": "ploetzlich-pflegebeduerftig-lieber-heute-schon-an-morgen-denken",
+    "status": "Not started"
+  },
+  {
+    "title": "Prävention: Burnout vermeiden, mentale Gesundheit fördern",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/praevention-burnout-vermeiden-mentale-gesundheit-foerdern.html",
+    "suggestedSlug": "praevention-burnout-vermeiden-mentale-gesundheit-foerdern",
+    "status": "Not started"
+  },
+  {
+    "title": "Glänzende Aussichten 2025: Sparen mit Gold und Silber",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/glaenzende-aussichten-2025-sparen-mit-gold-silber.html",
+    "suggestedSlug": "glaenzende-aussichten-2025-sparen-mit-gold-silber",
+    "status": "Not started"
+  },
+  {
+    "title": "Gold und Geldanlagen als bleibende Werte verschenken",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/gold-und-geldanlagen-als-bleibende-werte-verschenken.html",
+    "suggestedSlug": "gold-und-geldanlagen-als-bleibende-werte-verschenken",
+    "status": "Not started"
+  },
+  {
+    "title": "Klarna Ratenkauf, PayPal Ratenzahlung – mit wenigen Klicks in die Kostenfalle?",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/klarna-ratenkaiuf-paypal-ratenzahlung-mit-wenigen-klicks-in-die-kostenfalle.html",
+    "suggestedSlug": "klarna-ratenkaiuf-paypal-ratenzahlung-mit-wenigen-klicks-in-die-kostenfalle",
+    "status": "Not started"
+  },
+  {
+    "title": "Langfristige Attraktivität: Darum lohnt sich der Erwerb von Silber",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/silber-erwerben-darum-ist-2025-ein-guter-zeitpunkt.html",
+    "suggestedSlug": "silber-erwerben-darum-ist-2025-ein-guter-zeitpunkt",
+    "status": "Not started"
+  },
+  {
+    "title": "Mit der Solaranlage Geld verdienen? So geht's!",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/mit-der-solaranlage-geld-verdienen-so-gehts.html",
+    "suggestedSlug": "mit-der-solaranlage-geld-verdienen-so-gehts",
+    "status": "Not started"
+  },
+  {
+    "title": "Rechtsschutzversicherung: Schutz vor hohen Kosten",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/rechtsschutzversicherung-schutz-vor-hohen-kosten.html",
+    "suggestedSlug": "rechtsschutzversicherung-schutz-vor-hohen-kosten",
+    "status": "Not started"
+  },
+  {
+    "title": "Rentenerhöhung 2025: Privat vorsorgen bleibt wichtig!",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/rentenerhoehung-2025-privat-vorsorgen-bleibt-wichtig.html",
+    "suggestedSlug": "rentenerhoehung-2025-privat-vorsorgen-bleibt-wichtig",
+    "status": "Not started"
+  },
+  {
+    "title": "Sparen & Vorsorge für Kinder: Kleines 1×1 für Eltern",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/sparen-fuer-kinder.html",
+    "suggestedSlug": "sparen-fuer-kinder",
+    "status": "Not started"
+  },
+  {
+    "title": "Steigende Krankenkassen-Beiträge? Jetzt vergleichen und attraktive Leistungen sichern",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/steigende-krankenkassen-beitraege.html",
+    "suggestedSlug": "steigende-krankenkassen-beitraege",
+    "status": "Not started"
+  },
+  {
+    "title": "Steuerliche Vorteile nutzen – mit einer betrieblichen Altersversorgung",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/steuerliche-vorteile-nutzen-mit-einer-betrieblichen-altersversorgung.html",
+    "suggestedSlug": "steuerliche-vorteile-nutzen-mit-einer-betrieblichen-altersversorgung",
+    "status": "Not started"
+  },
+  {
+    "title": "Mutterschaftsgeld: Das steht Ihnen zu",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/mutterschaftsgeld.html",
+    "suggestedSlug": "mutterschaftsgeld",
+    "status": "Not started"
+  },
+  {
+    "title": "Nutzung eines Privatkredits: Auch für größere Investitionen passend",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/privatkredit-grosse-investitionen.html",
+    "suggestedSlug": "privatkredit-grosse-investitionen",
+    "status": "Not started"
+  },
+  {
+    "title": "Passt die Vermögensaufteilung im Investmentfondsdepot noch?",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/passt-die-vermoegensaufteilung-im-investmentfondsdepot.html",
+    "suggestedSlug": "passt-die-vermoegensaufteilung-im-investmentfondsdepot",
+    "status": "Not started"
+  },
+  {
+    "title": "Privatkredit: Mehr finanzieller Spielraum",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/privatkredit-mehr-finanzieller-spielraum.html",
+    "suggestedSlug": "privatkredit-mehr-finanzieller-spielraum",
+    "status": "Not started"
+  },
+  {
+    "title": "Rente, Kindergeld, Steuern, Versicherungen: Das ändert sich 2025",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/das-aendert-sich-2025.html",
+    "suggestedSlug": "das-aendert-sich-2025",
+    "status": "Not started"
+  },
+  {
+    "title": "Stichtag 1. März: Versicherungskennzeichen wechseln bei E-Scooter, Roller und Moped",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/versicherungskennzeichen-farbe-kosten-gueltigkeit.html",
+    "suggestedSlug": "versicherungskennzeichen-farbe-kosten-gueltigkeit",
+    "status": "Not started"
+  },
+  {
+    "title": "Vermögenssicherungspolice: Rundum geschützt durchs Leben",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/vermoegenssicherungspolice-rundum-geschuetzt-durchs-leben.html",
+    "suggestedSlug": "vermoegenssicherungspolice-rundum-geschuetzt-durchs-leben",
+    "status": "Not started"
+  },
+  {
+    "title": "Welche Versicherung deckt welche Schäden ab?",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/welche-versicherung-deckt-welche-schaeden-ab.html",
+    "suggestedSlug": "welche-versicherung-deckt-welche-schaeden-ab",
+    "status": "Not started"
+  },
+  {
+    "title": "Wie kann ich meine Gesundheit verbessern?",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/wie-kann-ich-meine-gesundheit-verbessern.html",
+    "suggestedSlug": "wie-kann-ich-meine-gesundheit-verbessern",
+    "status": "Not started"
+  },
+  {
+    "title": "Wiederanlage: Geld smart neu investieren",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/wiederanlage-geld-smart-neu-investieren.html",
+    "suggestedSlug": "wiederanlage-geld-smart-neu-investieren",
+    "status": "Not started"
+  },
+  {
+    "title": "Sicherheit, Planung, Gewinn: So wichtig ist es, den aktuellen Immobilienwert zu kennen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/aktuellen-immobilienwert-kennen.html",
+    "suggestedSlug": "aktuellen-immobilienwert-kennen",
+    "status": "Not started"
+  },
+  {
+    "title": "Sprung in die Selbstständigkeit: So kann es gelingen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/selbststaendigkeit-konzept-vorteile.html",
+    "suggestedSlug": "selbststaendigkeit-konzept-vorteile",
+    "status": "Not started"
+  },
+  {
+    "title": "Starten Sie 2024 mit einem Frischekick für Ihre Finanzen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/2024-frischekick-fuer-ihre-finanzen.html",
+    "suggestedSlug": "2024-frischekick-fuer-ihre-finanzen",
+    "status": "Not started"
+  },
+  {
+    "title": "Stressfrei in die erste eigene Wohnung: frühzeitig vorsorgen mit Bausparen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/bausparen-kauf-miete-wohnung-haus.html",
+    "suggestedSlug": "bausparen-kauf-miete-wohnung-haus",
+    "status": "Not started"
+  },
+  {
+    "title": "Taschengeld-Tabelle: So viel Taschengeld ist sinnvoll",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/taschengeldtabelle-empfehlungen.html",
+    "suggestedSlug": "taschengeldtabelle-empfehlungen",
+    "status": "Not started"
+  },
+  {
+    "title": "Winterreifenpflicht: Das ist zu beachten",
+    "topic": "retirement",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/vorsorge/winterreifen-pflicht-das-ist-zu-beachten.html",
+    "suggestedSlug": "winterreifen-pflicht-das-ist-zu-beachten",
+    "status": "Not started"
+  },
+  {
+    "title": "Vorsicht vor versteckten Kostenfallen",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/vorsicht-vor-versteckten-kostenfallen.html",
+    "suggestedSlug": "vorsicht-vor-versteckten-kostenfallen",
+    "status": "Not started"
+  },
+  {
+    "title": "Warum Bausparen sinnvoll für alle ist",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/warum-bausparen-sinnvoll-fuer-alle-ist.html",
+    "suggestedSlug": "warum-bausparen-sinnvoll-fuer-alle-ist",
+    "status": "Not started"
+  },
+  {
+    "title": "Was ist Inflation – und wie kann ich mein Erspartes davor schützen?",
+    "topic": "finances",
+    "sourceUrl": "https://www.allfinanz.ag/logan.williams/wichtig-fuer-sie/finanzen/was-ist-inflation-und-wie-kann-ich-mein-erspartes-davor-schuetzen.html",
+    "suggestedSlug": "was-ist-inflation-und-wie-kann-ich-mein-erspartes-davor-schuetzen",
     "status": "Not started"
   }
 ]

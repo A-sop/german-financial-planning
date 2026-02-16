@@ -8,6 +8,7 @@ import type { FinanzTopic } from '@/lib/finanztipps';
 import { format } from 'date-fns';
 import { BackLinkFinanztipps } from '@/components/back-link-finanztipps';
 import { CanonicalPostBody } from '@/components/canonical-post-body';
+import { CanonicalPostTitle } from '@/components/canonical-post-title';
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ?? 'https://www.germanfinancialplanning.de';
@@ -89,12 +90,25 @@ export default async function RetirementPostPage({
         <span className="text-xs text-muted-foreground tabular-nums">
           {post.date ? format(new Date(post.date), 'MMMM d, yyyy') : ''}
         </span>
-        <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
-          {post.title}
-        </h1>
+        {post.canonicalSource ? (
+          <CanonicalPostTitle
+            title={post.title}
+            titleEn={post.titleEn}
+            className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl"
+          />
+        ) : (
+          <h1 className="mt-1 text-2xl font-bold tracking-tight sm:text-3xl">
+            {post.title}
+          </h1>
+        )}
         <div className="mt-6 text-left">
           {post.canonicalSource ? (
-            <CanonicalPostBody excerpt={post.excerpt} content={post.content} canonicalSource={post.canonicalSource} />
+            <CanonicalPostBody
+              excerpt={post.excerpt}
+              content={post.content}
+              contentEn={post.contentEn}
+              canonicalSource={post.canonicalSource}
+            />
           ) : (
             <div className="insight-content text-foreground [&_p]:mb-4 [&_p]:leading-relaxed [&_a]:text-primary [&_a]:underline [&_ul]:list-disc [&_ul]:pl-6 [&_li]:mb-1">
               <ReactMarkdown>{post.content}</ReactMarkdown>

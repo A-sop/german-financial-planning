@@ -24,6 +24,12 @@ export interface FinanzPostMeta {
   canonicalSource?: string;
   /** When true, post is excluded from hub, category lists, and sitemap in production; still viewable by URL. */
   draft?: boolean;
+  /** Optional English translation for canonical posts: full body shown in EN view when set. */
+  contentEn?: string;
+  /** Optional English title; shown in EN view when set. */
+  titleEn?: string;
+  /** Optional English excerpt; used in EN view when set. */
+  excerptEn?: string;
 }
 
 export interface FinanzPost extends FinanzPostMeta {
@@ -59,6 +65,18 @@ export function getFinanzPostBySlug(slug: string): FinanzPost | null {
       ? data.canonicalSource.trim()
       : undefined;
   const draft = data.draft === true;
+  const contentEn =
+    typeof data.contentEn === 'string' && data.contentEn.trim()
+      ? data.contentEn.trim()
+      : undefined;
+  const titleEn =
+    typeof data.titleEn === 'string' && data.titleEn.trim()
+      ? data.titleEn.trim()
+      : undefined;
+  const excerptEn =
+    typeof data.excerptEn === 'string' && data.excerptEn.trim()
+      ? data.excerptEn.trim()
+      : undefined;
   return {
     slug,
     title: data.title ?? slug,
@@ -67,6 +85,9 @@ export function getFinanzPostBySlug(slug: string): FinanzPost | null {
     topic,
     canonicalSource,
     draft,
+    contentEn,
+    titleEn,
+    excerptEn,
     content,
   };
 }

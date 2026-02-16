@@ -28,11 +28,14 @@ Content lives in **`content/insights/`** as Markdown files. One file = one post.
 | Field | Required | Description |
 |-------|----------|-------------|
 | `canonicalSource` | Yes | Full URL of the source article on Allfinanz (e.g. `https://www.allfinanz.ag/logan.williams/...`). |
+| `titleEn` | No | English title; shown in the EN view when set. |
+| `excerptEn` | No | English excerpt; used in EN view when set. |
+| `contentEn` | No | **Full English translation of the article body.** When set, the EN view shows this instead of the default body. Use YAML multiline (`contentEn: \|`) for longer text. |
 
 When `canonicalSource` is set:
 
 - **German (DE):** Only the **excerpt** is shown, plus a prominent link **"Weiterlesen auf Allfinanz"** to the source. (Truncate on GFP.)
-- **English (EN):** The **full article** (body) is shown, with an italic note at the top: *"This article was first published on [Allfinanz](url)."* so readers see the full piece with clear source attribution.
+- **English (EN):** When `contentEn` is set, the **full English translation** is shown (with optional `titleEn` / `excerptEn`). Otherwise the default body is shown. An italic note at the top: *"This article was first published on [Allfinanz](url)."* is always shown for attribution.
 - The page’s HTML canonical and schema point to the source URL so search engines treat the source as canonical.
 
 ### File name = URL slug

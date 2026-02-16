@@ -2,6 +2,8 @@
 
 **Purpose:** Structured task ownership, permission, and execution scope across multi-product, human-in-the-loop system.
 
+**Before creating or updating any Linear issue:** Set the issue **title** to `[OWNER]-[DOMAIN]-[SURFACE] Description` (e.g. `GFP-OPS-WEB Canonical posts batch 1`). We stick to this title-prefix convention for every issue.
+
 **Context:** This system applies to all projects. When in loganwilliams-website, use `LDW-` for this project's tasks—but you can create Linear issues for any project (CM, LDW, LT, GFP) from this workspace.
 
 ---
@@ -81,8 +83,8 @@ All Linear issues and tasks use structured prefixes:
 
 ## Integration with Linear
 
-**When creating Linear issues:**
-1. Always include prefix in title: `[OWNER]-[DOMAIN]-[SURFACE] Description`
+**When creating Linear issues:** Read this rule first. Then:
+1. Set the **title** to the prefix + description: `[OWNER]-[DOMAIN]-[SURFACE] Description` (no exceptions)
 2. Use `-BIZ-` for business/strategy/content tasks (human required)
 3. Use `-DEV-` for development/technical tasks (can execute)
 4. Create issues for **any project** (CM, LDW, LT, GFP) when requested
